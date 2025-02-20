@@ -30,6 +30,14 @@ body {
 .section-m1{
   margin: 20px 100px;
 }
+li{
+  list-style: none;
+}
+::-webkit-scrollbar {
+  display: none;
+}
+
+
 /* Floating Animation */
 @keyframes float {
   0% {
@@ -68,6 +76,9 @@ body {
   }
   .section-m1{
       margin: 20px 50px;
+  }
+  .floatingHero{
+    display: none;
   }
 }
 @media(max-width: 575px){

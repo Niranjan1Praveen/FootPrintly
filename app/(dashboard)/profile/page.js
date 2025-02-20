@@ -11,36 +11,45 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer";
-
+import discountSvg from "../../../public/discount.svg";
+import Image from "next/image";
 const rewardsData = {
-  "Beginner": ["🎁 5% off eco-friendly products", "📘 Access to sustainability tips"],
+  "Beginner": ["🎟️ 5% off on movie tickets", "📺 Access to ott platforms"],
   "Intermediate": ["🎉 10% discount on sustainable brands", "🌍 Priority access to green events"],
   "Advanced": ["💚 20% off eco-store", "📝 Personalized sustainability plan"],
   "Expert": ["🎁 Free eco-subscription box", "🏆 Certificate of Sustainability"],
 };
 
 const Page = () => {
-  useEffect(() => {
-    const storedScore = Number(localStorage.getItem("totalScore")) || 0;
-    setTotalScore(storedScore);
-  }, []);
-
   const [totalScore, setTotalScore] = useState(0);
-  const [ecoLevel, setEcoLevel] = useState("Beginner");
-  const [challenge, setChallenge] = useState("Refill Instead of Buying a new bottle");
+  const [ecoLevel, setEcoLevel] = useState("");
+  const [challenge, setChallenge] = useState("");
   const [rewards, setRewards] = useState([]);
 
-  const updateProfile = (score, level, challenge) => {
-    const storedScore = Number(localStorage.getItem("totalScore"));
+  // Fetch stored score and eco level on component mount
+  useEffect(() => {
+    const storedScore = Number(localStorage.getItem("totalScore")) || 0;
+    const storedEcoLevel = localStorage.getItem("ecoLevel") || "Eco Warrior";
+    const storedChallenge = localStorage.getItem("challenge") || "Refill Instead of Buying a new bottle";
+
     setTotalScore(storedScore);
+    setEcoLevel(storedEcoLevel);
+    setChallenge(storedChallenge);
+
+    // Set rewards based on stored eco level
+    setRewards(rewardsData[storedEcoLevel] || []);
+  }, []);
+
+  // Update profile function (called by EcoTracker)
+  const updateProfile = (score, level, challenge) => {
+    localStorage.setItem("totalScore", score);
+    localStorage.setItem("ecoLevel", level);
+    localStorage.setItem("challenge", challenge);
+
+    setTotalScore(score);
     setEcoLevel(level);
     setChallenge(challenge);
-
-    if (level && rewardsData[level]) {
-      setRewards(rewardsData[level]);
-    } else {
-      setRewards([]);
-    }
+    setRewards(rewardsData[level] || []);
   };
 
   return (
@@ -77,17 +86,17 @@ const Page = () => {
             <DrawerContent>
               <div className="mx-auto w-full max-w-xs sm:max-w-sm">
                 <DrawerHeader>
-                  <DrawerTitle>Unlocked Rewards</DrawerTitle>
-                  <DrawerDescription>
+                  <DrawerTitle className="text-center">Unlocked Rewards</DrawerTitle>
+                  <DrawerDescription className="text-center">
                     Check the benefits you’ve unlocked based on your sustainability level.
                   </DrawerDescription>
                 </DrawerHeader>
 
                 <div className="p-4 pb-0">
                   {rewards.length > 0 ? (
-                    <ul className="text-md sm:text-lg text-white space-y-3">
+                    <ul className="text-md sm:text-lg text-white space-y-3 text-center">
                       {rewards.map((reward, index) => (
-                        <li key={index} className="bg-purple-500/20 border border-purple-500 rounded-lg p-3 shadow">
+                        <li key={index} className="bg-purple-500/20 border border-purple-500 rounded-[6px] cursor-pointer p-3 shadow">
                           {reward}
                         </li>
                       ))}
@@ -106,6 +115,10 @@ const Page = () => {
             </DrawerContent>
           </Drawer>
         </div>
+      </div>
+      <div className="flex flex-col items-center text-3xl font-bold">
+          <i>"Get the rewards you deserve!"</i>
+          <Image src={discountSvg} width={600} height={600}/>
       </div>
     </div>
   );

@@ -23,7 +23,7 @@ function Hero(props) {
           </Button>
         </Link>
       </div>
-      <Image src={heroAnimation} alt="hero gif" className="space-x-10px" width={500} height={500}/>
+      <Image src={heroAnimation} alt="hero gif" className="floatingHero space-x-10px" width={500} height={500}/>
     </div>
   );
 }

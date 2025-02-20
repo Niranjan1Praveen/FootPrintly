@@ -17,7 +17,7 @@ function Header(props) {
         <Image src={logo} width={50} height={50} className="cursor" alt="logo"/>
         <h2 className="font-bold text-[1.7rem]">FootPrintly</h2>
       </div>
-      <DropdownMenu className="border-none outline-none">
+      <DropdownMenu className="border-none outline-none ">
         <DropdownMenuTrigger className="border-b-2 py-[4px] focus:outline-none">Settings <SettingsIcon/> </DropdownMenuTrigger>
         <DropdownMenuContent>
           <DropdownMenuItem>Profile</DropdownMenuItem>

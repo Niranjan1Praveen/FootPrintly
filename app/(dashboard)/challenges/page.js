@@ -4,6 +4,8 @@ import BoltIcon from "@mui/icons-material/Bolt";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import LockIcon from "@mui/icons-material/Lock";
 import MilitaryTechIcon from "@mui/icons-material/MilitaryTech";
+import { Checkbox } from "@/components/ui/checkbox"
+
 import { useState, useEffect } from "react";
 import Timer from "@/app/timer";
 
@@ -43,12 +45,18 @@ function Page(props) {
 
       {/* Column 2 */}
       <div className="flex flex-col gap-3 rounded-lg p-6 border-2 border-gray-700 w-full md:w-1/3">
-        <h1 className="text-lg font-bold">Monthly Challenges Unlock Soon!</h1>
+        <h1 className="text-lg font-bold">Monthly Challenges!</h1>
         <div className="flex items-center gap-2">
           <h1>Complete each month's challenges to earn exclusive badges</h1>
           <MilitaryTechIcon />
         </div>
-        <Button className="mt-4">Start a lesson</Button>
+        <ul className="list-disc list-inside">
+          <li className="flex gap-2 items-center"> <Checkbox/> Recycling Boost - Collect & recycle 5 items</li>
+          <li className="flex gap-2 items-center"> <Checkbox/> Skip the Straw</li>
+          <li className="flex gap-2 items-center"> <Checkbox/> Refill Instead of Buying a new bottle</li>
+          <li className="flex gap-2 items-center"> <Checkbox/> One Meat-Free Meal</li>
+        </ul>
+        <Button className="mt-4">Take a quiz</Button>
       </div>
     </div>
   );

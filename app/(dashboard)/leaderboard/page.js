@@ -80,7 +80,7 @@ function Page() {
   ];
 
   return (
-    <main className="flex flex-col items-center justify-between gap-10 section-p">
+    <main className="h-screen flex flex-col items-center justify-between gap-10 section-p overflow-y-scroll">
       {/* User League Status + Global Arena */}
       <div className="flex flex-col md:flex-row items-center gap-7 w-full">
         {/* User League Panel */}
