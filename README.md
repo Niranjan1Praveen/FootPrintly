@@ -68,10 +68,5 @@ For support, questions, or feedback, feel free to reach out to any of the contac
 
 ---
 
-## Screenshots
-(Add screenshots or GIFs demonstrating app functionality)
-
----
-
 ## Stay Green, Stay Inspired 🌱
 
