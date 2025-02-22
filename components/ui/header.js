@@ -1,14 +1,12 @@
 import Image from "next/image";
 import logo from '../../public/logo.png';
-import SettingsIcon from '@mui/icons-material/Settings';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Settings } from "lucide-react";
 
 function Header(props) {
   return (
@@ -18,7 +16,7 @@ function Header(props) {
         <h2 className="font-bold text-[1.7rem]">FootPrintly</h2>
       </div>
       <DropdownMenu className="border-none outline-none ">
-        <DropdownMenuTrigger className="border-b-2 py-[4px] focus:outline-none">Settings <SettingsIcon/> </DropdownMenuTrigger>
+        <DropdownMenuTrigger className="py-[4px] focus:outline-none"><Settings/> </DropdownMenuTrigger>
         <DropdownMenuContent>
           <DropdownMenuItem>Profile</DropdownMenuItem>
           <DropdownMenuItem>Billing</DropdownMenuItem>
