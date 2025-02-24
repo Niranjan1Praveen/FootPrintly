@@ -3,21 +3,23 @@
 @tailwind components;
 @tailwind utilities;
 
+
 :root {
   --background: #ffffff;
   --foreground: linear-gradient(rgba(255, 255, 255, 0.1) 0%, rgb(0, 0, 0) 100%);
   --background-base: #121212;
-}
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-family-sans: "Poppins", serif;
+  --primary-text: #616D8A;
+  --secondary-text: #183583;
 }
 
 body {
   color: var(--foreground);
-  font-family: "Poppins", serif;
+  font-family: var(--font-family-sans);
+  background: var(--background);
+}
+h1,h2,h3,h4,h5,h6,p{
+  color: var(--primary-text);
 }
 .section-p{
   padding: 30px 250px;
