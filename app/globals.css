@@ -14,13 +14,14 @@
 }
 
 body {
-  color: var(--foreground);
   font-family: var(--font-family-sans);
   background: var(--background);
+  color: #ffffff;
 }
-h1,h2,h3,h4,h5,h6,p{
+/* h1,h2,h3,h4,h5,h6,p{
   color: var(--primary-text);
-}
+} */
+
 .section-p{
   padding: 30px 250px;
 }
@@ -38,7 +39,6 @@ li{
 ::-webkit-scrollbar {
   display: none;
 }
-
 
 /* Floating Animation */
 @keyframes float {

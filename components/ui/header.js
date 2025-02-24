@@ -3,7 +3,10 @@ import React from "react";
 import userSvg from "../../public/icons/xmark.svg";
 import xmark from "../../public/icons/xmark.svg";
 import bars from "../../public/icons/xmark.svg";
+import signIn from "../../public/icons/sign-in.svg";
+
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Header() {
   function displayNavbar() {
@@ -15,7 +18,7 @@ export default function Header() {
   }
 
   return (
-    <header className="flex items-center justify-center gap-20 fixed top-0 left-0 w-full shadow-sm z-50 flex px-6 py-4 section-p">
+    <header className="flex items-center justify-center gap-20 top-0 left-0 w-full shadow-sm z-50 flex px-6 py-4 section-p">
       {/* Logo */}
       <div className="flex items-center gap-4">
         {/* <img src={logo} alt="Logo" className="w-32 h-14 object-cover" /> */}
@@ -52,10 +55,7 @@ export default function Header() {
           </Link>
         </li>
         <li className="flex items-center gap-2 cursor-pointer">
-          <img src={userSvg} className="w-5 h-5" alt="Logout" />
-          <Link href={"/"} className="text-gray-900 font-medium">
-            Log Out
-          </Link>
+          <Image src={signIn} className="w-5 h-5" alt="Logout" />
         </li>
       </ul>
       <div className="md:hidden cursor-pointer" onClick={displayNavbar}>
