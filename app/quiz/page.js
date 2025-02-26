@@ -1,7 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import nextGuitar from "../../public/gifs/guitar.gif";
 import nextGuitarStatic from "../../public/guitarstatic.svg";
 import Image from "next/image";
 import Link from "next/link";
@@ -89,13 +88,6 @@ export default function Page() {
 
       <div className="rounded-lg p-8 flex flex-col gap-4">
         <div className="flex gap-2 items-center font-medium text-lg py-[30px]">
-          <Image
-            src={isGifActive ? nextGuitar : nextGuitarStatic}
-            className={`transition-opacity duration-1000 ease-in-out`}
-            alt="question animation"
-            width={100}
-            height={100}
-          />
           <p className="border border-[rgb(55,70,79)] py-[12px] px-[16px] rounded-[6px] text-[17px]">
             {data.QS}
           </p>
