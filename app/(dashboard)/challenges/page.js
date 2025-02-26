@@ -5,8 +5,8 @@ import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import LockIcon from "@mui/icons-material/Lock";
 import MilitaryTechIcon from "@mui/icons-material/MilitaryTech";
 import { Checkbox } from "@/components/ui/checkbox";
-import { useState, useEffect } from "react";
 import Timer from "@/app/timer";
+import FootModel from "@/components/footmodel"
 
 function Page(props) {
   return (
@@ -68,6 +68,7 @@ function Page(props) {
           Take a quiz
         </Button>
       </div>
+      
     </div>
   );
 }
