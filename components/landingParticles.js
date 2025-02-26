@@ -7,17 +7,17 @@ import { useRef, useEffect, useState } from "react";
 export default function LandingParticles() {
   return (
     <Canvas
+      className="h-screen"
       camera={{ position: [0, 10, 10] }}
       style={{
         zIndex: "-50",
-        width: "100vw",
         position: "absolute",
       }}
     >
       <ambientLight intensity={0.7} />
       <directionalLight position={[5, 10, 5]} intensity={1} />
       <Physics gravity={[0, 0, 0]}>
-        {[...Array(20)].map((_, i) => {
+        {[...Array(40)].map((_, i) => {
           const randomX = Math.random() * 4 - 2;
           const randomY = Math.random() * 2 + 2;
           const randomZ = Math.random() * 4 - 2;

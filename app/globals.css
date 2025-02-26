@@ -4,9 +4,8 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: linear-gradient(rgba(255, 255, 255, 0.1) 0%, rgb(0, 0, 0) 100%);
-  --background-base: #121212;
+  --primary-background: #ffffff;
+  --secondary-background: #F0F1F3;
   --font-family-sans: "Poppins", serif;
   --primary-text: #616d8a;
   --secondary-text: #183583;
@@ -14,7 +13,7 @@
 
 body {
   font-family: var(--font-family-sans);
-  background: var(--background);
+  background: var(--primary-background);
   color: var(--primary-text);
 }
 h1,

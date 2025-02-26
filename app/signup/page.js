@@ -5,6 +5,8 @@ import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useState } from "react";
+import Image from "next/image";
+import logo from "../../public/logo/logo.png"
 
 function Page() {
   const [error, setError] = useState(false);
@@ -34,7 +36,7 @@ function Page() {
       ...formData,
       authToken: uniqueToken,
     };
-    
+
     try {
       const response = await fetch("http://localhost:3001/api/signup", {
         method: "POST",
@@ -56,15 +58,22 @@ function Page() {
   };
 
   return (
-    <section className="flex flex-col items-center justify-center gap-6 py-12 px-6 bg-gradient-to-b from-white to-gray-100 min-h-screen">
-      <div className="flex flex-col gap-4 px-8 py-10 bg-white rounded-xl shadow-md w-full max-w-md">
-        <h2 className="text-center text-2xl font-bold text-gray-900">Sign Up for FootPrintly</h2>
+    <section className="flex flex-col justify-center gap-6 h-screen section-p">
+      {/* SignUp Content */}
+      <div className="flex gap-10 justify-between">
+        <div className="flex flex-col justify-between gap-5">
+          <h2 className="text-2xl font-bold">Get Started with FootPrintly</h2>
+          <p>The easiest way to get icons on your website is with a Kit. It's your very own custom version of Font Awesome, all bundled up with only the icons, tools, and settings you need.</p>
+        </div>
+        <Image href={logo} alt="bounce logo icon" className="w-full h-full"/>
+      </div>
+      <div className="flex flex-col gap-4 px-8 py-10 bg-[var(--secondary-background)] rounded-xl shadow-md">
         {error && (
           <p className="flex items-center gap-3 bg-red-100 text-red-700 py-3 px-4 rounded-lg text-sm border border-red-300">
             <ErrorOutlineOutlinedIcon /> Incorrect username, email, or password.
           </p>
         )}
-        
+
         <label className="text-sm text-gray-700">Username</label>
         <Input
           type="text"
@@ -94,7 +103,7 @@ function Page() {
           onChange={handleChange}
           className="bg-gray-200 text-gray-900 border border-gray-300"
         />
-        
+
         <Button
           className="bg-[#1ed760] transform transition-all duration-300 hover:scale-105 text-white font-semibold mt-4 py-2 rounded-lg"
           onClick={handleSignup}
@@ -103,7 +112,7 @@ function Page() {
         </Button>
 
         <p className="text-center text-sm text-gray-600 mt-4">
-          Already have an account? 
+          Already have an account?
           <Link href="/login" className="underline text-[#1ed760] hover:text-green-400"> Login to FootPrintly</Link>
         </p>
       </div>

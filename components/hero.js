@@ -22,7 +22,7 @@ function Hero() {
     return () => clearInterval(intervalId);
   }, [currentText, heroStrong]);
   return (
-    <div className="section-p flex gap-40 items-center justify-center relative">
+    <div className="section-p flex gap-40 items-center justify-center">
       {/* Hero Content */}
       <LandingParticles />
       <div className="flex flex-col items-center justify-between gap-10 w-[50%] py-[50px] text-center">
