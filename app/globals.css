@@ -1,43 +1,50 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 
 :root {
   --background: #ffffff;
   --foreground: linear-gradient(rgba(255, 255, 255, 0.1) 0%, rgb(0, 0, 0) 100%);
   --background-base: #121212;
   --font-family-sans: "Poppins", serif;
-  --primary-text: #616D8A;
+  --primary-text: #616d8a;
   --secondary-text: #183583;
 }
 
 body {
   font-family: var(--font-family-sans);
   background: var(--background);
+  color: var(--primary-text);
 }
-h1,h2,h3,h4,h5,h6,p{
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
   color: var(--primary-text);
 }
 
-.section-p{
+.section-p {
   padding: 30px 250px;
 }
-.icon{
+.icon {
   width: 20px;
   height: 20px;
   cursor: pointer;
 }
-.section-m1{
+.section-m1 {
   margin: 20px 100px;
 }
-li{
+li {
   list-style: none;
 }
 ::-webkit-scrollbar {
   display: none;
 }
+
 /* Fade up Animation */
 .fade-up {
   transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
@@ -71,7 +78,8 @@ li{
 }
 
 @keyframes bounce {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(-25%);
     animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
   }
@@ -81,26 +89,78 @@ li{
   }
 }
 
-.bouncing{
+.bouncing {
   animation: bounce 3s ease-in-out infinite;
 }
 /* Media Queries */
-@media(max-width: 1276px){
-  .section-p{
-      padding: 20px 50px;
+@media (max-width: 1276px) {
+  .section-p {
+    padding: 20px 50px;
   }
-  .section-m1{
-      margin: 20px 50px;
+  .section-m1 {
+    margin: 20px 50px;
   }
-  .floatingHero{
+  .floatingHero {
     display: none;
   }
 }
-@media(max-width: 575px){
-  .section-p{
-      padding: 20px;
+@media (max-width: 575px) {
+  .section-p {
+    padding: 20px;
   }
-  .section-m1{
-      margin: 20px;
+  .section-m1 {
+    margin: 20px;
   }
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Floating bubble animations */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-30px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+/* Bubbles */
+.bubble-1 {
+  width: 120px;
+  height: 120px;
+  background-color: rgba(91, 115, 213, 0.4);
+  top: 10%;
+  left: 20%;
+  animation: float 10s ease-in-out infinite;
+}
+
+.bubble-2 {
+  width: 100px;
+  height: 100px;
+  background-color: rgba(76, 156, 255, 0.4);
+  bottom: 0;
+  animation: float 12s ease-in-out infinite;
+}
+
+.bubble-3 {
+  width: 80px;
+  height: 80px;
+  background-color: rgba(79, 130, 228, 0.3);
+  top: 0;
+  right: 30%;
+  animation: float 8s ease-in-out infinite;
+}
+
+.bubble-4 {
+  width: 140px;
+  height: 140px;
+  background-color: rgba(72, 115, 220, 0.4);
+  bottom: 5%;
+  right: 10%;
+  animation: float 14s ease-in-out infinite;
 }

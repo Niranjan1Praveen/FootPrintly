@@ -1,7 +1,7 @@
-import Navbar from "@/components/ui/navbar";
+import Navbar from "@/components/navbar";
 export default function DashboardLayout({ children }) {
   return (
-    <div className="flex bg-gradient-to-b from-black to-black/90">
+    <div className="flex">
       <Navbar />
       <main>{children}</main>
     </div>

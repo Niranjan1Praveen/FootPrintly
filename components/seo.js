@@ -1,7 +1,7 @@
 import Image from "next/image";
-import seo1 from "../../public/seo/2.svg";
-import seo2 from "../../public/seo/3.svg";
-import seo3 from "../../public/seo/4.svg";
+import seo1 from "../public/seo/2.svg";
+import seo2 from "../public/seo/3.svg";
+import seo3 from "../public/seo/4.svg";
 
 function Seo(props) {
   return (

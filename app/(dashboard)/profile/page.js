@@ -15,9 +15,9 @@ import discountSvg from "../../../public/discount.svg";
 import Image from "next/image";
 const rewardsData = {
   "Beginner": ["🎟️ 5% off on movie tickets", "📺 Access to ott platforms"],
-  "Intermediate": ["🎉 10% discount on sustainable brands", "🌍 Priority access to green events"],
-  "Advanced": ["💚 20% off eco-store", "📝 Personalized sustainability plan"],
-  "Expert": ["🎁 Free eco-subscription box", "🏆 Certificate of Sustainability"],
+  "Eco Explorer": ["🎉 10% discount on sustainable brands", "🌍 Priority access to green events"],
+  "Eco Learner": ["💚 20% off eco-store", "📝 Personalized sustainability plan"],
+  "Eco Warrior": ["🎁 Free eco-subscription box", "🏆 Certificate of Sustainability"],
 };
 
 const Page = () => {

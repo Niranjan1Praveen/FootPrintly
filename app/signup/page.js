@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useState } from "react";
 
-function Page(props) {
+function Page() {
   const [error, setError] = useState(false);
   const router = useRouter();
   const [formData, setFormData] = useState({
@@ -26,92 +26,85 @@ function Page(props) {
   const handleSignup = async () => {
     if (!formData.username || !formData.email || !formData.password) {
       setError(true);
-    } else {
-      setError(false);
-      const uniqueToken = crypto.randomUUID();
-      const newUser = {
-        ...formData,
-        authToken: uniqueToken,
-      };
-      setFormData(newUser);
-      
-      try {
-        const response = await fetch("http://localhost:3001/api/signup", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(newUser),
-        });
-
-        const result = await response.json();
-        if(response.ok){
-          router.push("/profile");
-        }
-        else{
-          alert("Cannot Sign Up!")
-        }
-      } 
-      
-      catch (error) {
-        console.error("Error signing up:", error);
-        alert("An error occurred. Please try again.");
+      return;
+    }
+    setError(false);
+    const uniqueToken = crypto.randomUUID();
+    const newUser = {
+      ...formData,
+      authToken: uniqueToken,
+    };
+    
+    try {
+      const response = await fetch("http://localhost:3001/api/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newUser),
+      });
+      const result = await response.json();
+      if (response.ok) {
+        router.push("/profile");
+      } else {
+        alert("Cannot Sign Up!");
       }
+    } catch (error) {
+      console.error("Error signing up:", error);
+      alert("An error occurred. Please try again.");
     }
   };
 
   return (
-    <section className="flex flex-col items-center justify-center gap-4 py-10 px-4 bg-gradient-to-b from-black to-black/80 min-h-screen">
-      <div className="flex flex-col gap-y-3 px-6 py-10 justify-center bg-[var(--background-base,#ffffff)] rounded-[6px] w-full max-w-md">
+    <section className="flex flex-col items-center justify-center gap-6 py-12 px-6 bg-gradient-to-b from-white to-gray-100 min-h-screen">
+      <div className="flex flex-col gap-4 px-8 py-10 bg-white rounded-xl shadow-md w-full max-w-md">
+        <h2 className="text-center text-2xl font-bold text-gray-900">Sign Up for FootPrintly</h2>
         {error && (
-          <p className="flex gap-4 items-center my-2 bg-[#E91429] py-3 px-5 text-sm text-white-700">
+          <p className="flex items-center gap-3 bg-red-100 text-red-700 py-3 px-4 rounded-lg text-sm border border-red-300">
             <ErrorOutlineOutlinedIcon /> Incorrect username, email, or password.
           </p>
         )}
-
-        <label className="text-sm">Username</label>
+        
+        <label className="text-sm text-gray-700">Username</label>
         <Input
           type="text"
           name="username"
-          placeholder="username"
+          placeholder="Enter your username"
           value={formData.username}
           onChange={handleChange}
+          className="bg-gray-200 text-gray-900 border border-gray-300"
         />
 
-        <label className="text-sm">Email</label>
+        <label className="text-sm text-gray-700">Email</label>
         <Input
           type="text"
           name="email"
-          placeholder="Email ID"
+          placeholder="Enter your email"
           value={formData.email}
           onChange={handleChange}
+          className="bg-gray-200 text-gray-900 border border-gray-300"
         />
 
-        <label className="text-sm">Password</label>
+        <label className="text-sm text-gray-700">Password</label>
         <Input
           type="password"
           name="password"
-          placeholder="Password"
+          placeholder="Create a password"
           value={formData.password}
           onChange={handleChange}
+          className="bg-gray-200 text-gray-900 border border-gray-300"
         />
-        <hr className="w-full my-6" />
-
+        
         <Button
-          className="bg-[#1ed760] transform transition-transform duration-300 hover:scale-110 text-black border-none outline-none hover:!bg-[#1ed760] hover:!border-none hover:!shadow-none hover:!text-black mt-4"
+          className="bg-[#1ed760] transform transition-all duration-300 hover:scale-105 text-white font-semibold mt-4 py-2 rounded-lg"
           onClick={handleSignup}
         >
           Sign Up
         </Button>
 
-        <p className="text-sm text-center text-[#B3B3B3] mt-4">
-          Already have an account?{" "}
-          <Link
-            href={"/login"}
-            className="underline hover:text-[#1ed760] text-white"
-          >
-            Login to FootPrintly
-          </Link>
+        <p className="text-center text-sm text-gray-600 mt-4">
+          Already have an account? 
+          <Link href="/login" className="underline text-[#1ed760] hover:text-green-400"> Login to FootPrintly</Link>
         </p>
       </div>
     </section>

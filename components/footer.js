@@ -3,7 +3,7 @@ import React from "react";
 
 function Footer() {
   return (
-    <footer className="flex items-center bg-[var(--background-base,#ffffff)] p-[32px] section-p">
+    <footer className="flex items-center bg-[#183153] section-p">
       <small className="text-[#B3B3B3]">
         Built by{" "}
         <Link href={"/"} className="uppercase underline">
