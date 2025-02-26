@@ -76,21 +76,6 @@ li {
   animation: float 3s ease-in-out infinite;
 }
 
-@keyframes bounce {
-  0%,
-  100% {
-    transform: translateY(-25%);
-    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
-  }
-  50% {
-    transform: none;
-    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
-  }
-}
-
-.bouncing {
-  animation: bounce 3s ease-in-out infinite;
-}
 /* Media Queries */
 @media (max-width: 1276px) {
   .section-p {
@@ -98,9 +83,6 @@ li {
   }
   .section-m1 {
     margin: 20px 50px;
-  }
-  .floatingHero {
-    display: none;
   }
 }
 @media (max-width: 575px) {
