@@ -1,10 +1,10 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import nextGuitarStatic from "../../public/guitarstatic.svg";
+import nextGuitarStatic from "../../public/badges/guitarstatic.svg";
 import Image from "next/image";
 import Link from "next/link";
-import sadLogo from "../../public/sadlogo.svg";
+import sadLogo from "../../public/badges/sadlogo.svg";
 import CloseIcon from "@mui/icons-material/Close";
 import EmptyList from "@/components/emptylist";
 export default function Page() {

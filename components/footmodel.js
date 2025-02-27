@@ -4,8 +4,8 @@ import { OrbitControls, useGLTF, useTexture, SoftShadows } from "@react-three/dr
 import * as THREE from "three";
 
 const FootMesh = () => {
-  const { scene, materials } = useGLTF("/footmodel.glb"); // Load the GLB model
-  const texture = useTexture("/texture.jpeg"); // Ensure the file exists in public/logo/
+  const { scene, materials } = useGLTF("/glb/footmodel.glb"); // Load the GLB model
+  const texture = useTexture("/glb/texture.jpeg"); // Ensure the file exists in public/logo/
 
   // ✅ Ensure the texture is applied correctly
   if (texture) {

@@ -54,10 +54,10 @@ export default function Navbar() {
   return (
     <div
       className={`min-h-screen transition-all duration-300 flex flex-col shadow-md items-center bg-[var(--secondary-background)]
-      ${isNavbarOpen ? "w-[250px]" : "w-[75px]"}`}
+      ${isNavbarOpen ? "w-[250px]" : "w-[55px]"}`}
     >
       {/* Menu Button */}
-      <div className="flex justify-between items-center justify-center p-4 gap-4 w-full">
+      <div className="flex justify-between items-center p-4 gap-4 w-full">
         <h2
           className={`text-[1.6rem] font-bold transition-all duration-300 text-[#1CB0F6] 
           ${isNavbarOpen ? "block" : "hidden"}`}
