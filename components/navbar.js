@@ -5,20 +5,23 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Link from "next/link";
 import LeaderboardIcon from "@mui/icons-material/Leaderboard";
 import QuestionAnswerIcon from "@mui/icons-material/QuestionAnswer";
-import LiveHelpIcon from '@mui/icons-material/LiveHelp';
-import Person4Icon from '@mui/icons-material/Person4';
-
+import LiveHelpIcon from "@mui/icons-material/LiveHelp";
+import Person4Icon from "@mui/icons-material/Person4";
+import GradeIcon from "@mui/icons-material/Grade";
+import logo from "../public/logo/logo.png";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import Image from "next/image";
+import Rewards from "./rewards";
 
 export default function Navbar() {
   const [isNavbarOpen, setIsNavbarOpen] = useState(true);
   const [dates, setDates] = useState([]);
-  
+
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 768) {
@@ -34,14 +37,14 @@ export default function Navbar() {
 
   useEffect(() => {
     const today = new Date();
-    const options = { weekday: "short", day: "2-digit", month: "short" }; 
+    const options = { weekday: "short", day: "2-digit", month: "short" };
 
     const upcomingDates = Array.from({ length: 7 }, (_, i) => {
       const date = new Date();
       date.setDate(today.getDate() + i);
       return {
-        key: date.toISOString().split("T")[0], 
-        formatted: date.toLocaleDateString("en-GB", options), 
+        key: date.toISOString().split("T")[0],
+        formatted: date.toLocaleDateString("en-GB", options),
       };
     });
 
@@ -50,7 +53,7 @@ export default function Navbar() {
 
   return (
     <div
-      className={`h-screen transition-all duration-300 border-r-2 border-gray-700 flex flex-col items-center
+      className={`min-h-screen transition-all duration-300 flex flex-col shadow-md items-center bg-[var(--secondary-background)]
       ${isNavbarOpen ? "w-[250px]" : "w-[75px]"}`}
     >
       {/* Menu Button */}
@@ -59,51 +62,67 @@ export default function Navbar() {
           className={`text-[1.6rem] font-bold transition-all duration-300 text-[#1CB0F6] 
           ${isNavbarOpen ? "block" : "hidden"}`}
         >
-          FootPrintly
+          <Image src={logo} alt="navbar logo" width={40} height={40} />
         </h2>
         <MenuIcon
           className="cursor-pointer"
           onClick={() => setIsNavbarOpen(!isNavbarOpen)}
         />
       </div>
+      <ul className="flex flex-col gap-2 flex-grow w-full ">
+        <hr className="w-full h-[3px] text-black" />
 
-      {/* Navigation Items */}
-      <ul className="flex flex-col gap-2 flex-grow w-full">
         {/* Profile */}
         <Link href="/profile">
-          <li className="flex items-center gap-4 p-4 cursor-pointer hover:bg-gray-800 rounded-[6px]">
+          <li className="flex items-center gap-4 p-4 cursor-pointer rounded-[5px]">
             <Person4Icon className="icon" />
-            <p className={`text-sm uppercase transition-all duration-300 ${isNavbarOpen ? "block" : "hidden"}`}>
+            <p
+              className={`text-sm uppercase transition-all duration-300 ${
+                isNavbarOpen ? "block" : "hidden"
+              }`}
+            >
               Your Profile
             </p>
           </li>
         </Link>
-
+        <hr className="w-full h-[3px] text-black" />
         {/* LeaderBoards */}
         <Link href="/leaderboard">
-          <li className="flex items-center gap-4 p-4 cursor-pointer hover:bg-gray-800 rounded-[6px]">
+          <li className="flex items-center gap-4 p-4 cursor-pointer rounded-[5px]">
             <LeaderboardIcon className="icon" />
-            <p className={`text-sm uppercase transition-all duration-300 ${isNavbarOpen ? "block" : "hidden"}`}>
+            <p
+              className={`text-sm uppercase transition-all duration-300 ${
+                isNavbarOpen ? "block" : "hidden"
+              }`}
+            >
               LeaderBoards
             </p>
           </li>
         </Link>
-
+        <hr className="w-full h-[3px] text-black" />
         {/* Challenges */}
         <Link href="/challenges">
-          <li className="flex items-center gap-4 p-4 cursor-pointer hover:bg-gray-800 rounded-[6px]">
+          <li className="flex items-center gap-4 p-4 cursor-pointer rounded-[5px]">
             <EmojiEventsIcon className="icon" />
-            <p className={`text-sm uppercase transition-all duration-300 ${isNavbarOpen ? "block" : "hidden"}`}>
+            <p
+              className={`text-sm uppercase transition-all duration-300 ${
+                isNavbarOpen ? "block" : "hidden"
+              }`}
+            >
               Challenges
             </p>
           </li>
         </Link>
-
+        <hr className="w-full h-[3px] text-black" />
         {/* Quizzes */}
-        <li className="flex items-center gap-4 p-4 cursor-pointer hover:bg-gray-800 rounded-[6px] relative">
+        <li className="flex items-center gap-4 p-4 cursor-pointer rounded-[5px] relative">
           <QuestionAnswerIcon className="icon" />
           <DropdownMenu>
-            <DropdownMenuTrigger className={`focus:outline-none ${isNavbarOpen ? "block" : "hidden"}`}>
+            <DropdownMenuTrigger
+              className={`focus:outline-none text-sm uppercase transition-all duration-300 ${
+                isNavbarOpen ? "block" : "hidden"
+              }`}
+            >
               Quizzes
             </DropdownMenuTrigger>
             <DropdownMenuContent className="p-2 m-2 rounded-[6px] absolute top-[-50px] left-[50px] uppercase min-w-[200px]">
@@ -121,16 +140,33 @@ export default function Navbar() {
             </DropdownMenuContent>
           </DropdownMenu>
         </li>
-
+        <hr className="w-full h-[3px] text-black" />
         {/* FAQs */}
         <Link href="/faqs">
-          <li className="flex items-center gap-4 p-4 cursor-pointer hover:bg-gray-800 rounded-[6px]">
+          <li className="flex items-center gap-4 p-4 cursor-pointer rounded-[5px]">
             <LiveHelpIcon className="icon" />
-            <p className={`text-sm uppercase transition-all duration-300 ${isNavbarOpen ? "block" : "hidden"}`}>
+            <p
+              className={`text-sm uppercase transition-all duration-300 ${
+                isNavbarOpen ? "block" : "hidden"
+              }`}
+            >
               FAQs
             </p>
           </li>
         </Link>
+        <hr className="w-full h-[3px] text-black" />
+        {/* Rewards */}
+        <li className="flex items-center gap-4 p-4 cursor-pointer rounded-[5px]">
+          <GradeIcon className="icon" />
+          <p
+            className={`text-sm uppercase transition-all duration-300 ${
+              isNavbarOpen ? "block" : "hidden"
+            }`}
+          >
+            <Rewards />
+          </p>
+        </li>
+        <hr className="w-full h-[3px] text-black" />
       </ul>
     </div>
   );

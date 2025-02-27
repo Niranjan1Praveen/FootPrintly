@@ -15,7 +15,7 @@ export default function Header() {
       {/* Logo */}
       <div className="flex items-center gap-4">
         <Image src={logo} alt="Logo" width={30} height={30} />
-        <h1 className="text-xl font-bold tracking-widest cursor-pointer">
+        <h1 className="text-xl font-bold tracking-widest cursor-pointer text-[var(--secondary-text)]">
           FootPrintly
         </h1>
       </div>
@@ -30,22 +30,24 @@ export default function Header() {
           <Image src={xmark} alt="Close navbar" className="w-6 h-6" />
         </li>
         <li>
-          <Link href={"/"} className="text-gray-900 font-medium">
+          <Link href={"/"} className="text-gray-900 font-medium hover:underline">
             Start
           </Link>
         </li>
         <li>
-          <Link href={"/"} className="text-gray-900 font-medium">
+          <Link href={"/"} className="text-gray-900 font-medium hover:underline">
             About
           </Link>
         </li>
         <li>
-          <Link href={"/"} className="text-gray-900 font-medium">
+          <Link href={"/"} className="text-gray-900 font-medium hover:underline">
             Contact
           </Link>
         </li>
         <li className="flex items-center gap-2 cursor-pointer">
-          <Image src={signIn} className="w-5 h-5" alt="Logout" />
+          <Link href={"/signup"}>
+            <Image src={signIn} className="w-5 h-5" alt="Logout" />
+          </Link>
         </li>
       </ul>
 

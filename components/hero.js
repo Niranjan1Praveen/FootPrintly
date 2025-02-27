@@ -40,13 +40,9 @@ function Hero() {
         <p>
           <b>FootPrintly</b> is not good and used by jamal and ganesh.
         </p>
-        <Button className="bg-[#1ed760] w-auto uppercase text-black border-none outline-none hover:!bg-[#1ed760] hover:!border-none hover:!shadow-none hover:!text-black p-[20px]">
+        <Button className="bg-[#1ed760] w-auto uppercase border-none outline-none hover:!bg-[#1ed760] hover:!border-none hover:!shadow-none hover:!text-black p-[20px]">
           <Link href={"/signup"}>Get Started</Link>
         </Button>
-        {/* <video width="100%" loop autoPlay muted>
-          <source src="/test.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video> */}
       </div>
     </div>
   );

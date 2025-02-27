@@ -55,9 +55,9 @@ function LoginPage() {
   };
 
   return (
-    <section className="flex flex-col items-center gap-10 justify-center min-h-screen section-p">
-      <div className="flex flex-col gap-4 px-8 py-10 bg-[var(--secondary-background)] rounded-xl shadow-md min-w-[500px]">
-        <small className="text-[#1CB0F6] uppercase text-center font-bold">
+    <section className="flex flex-col items-center gap-10 justify-center min-h-screen section-p overflow-hidden">
+      <div className="flex flex-col gap-4 px-8 py-10 bg-[var(--secondary-background)] rounded-xl shadow-md min-w-[400px]">
+        <small className="text-[#1CB0F6] uppercase text-center font-bold text-[1rem]">
           Welcome Back
         </small>
         <Image
@@ -71,8 +71,8 @@ function LoginPage() {
           Log in to FootPrintly
         </h2>
         {error && (
-          <p className="flex gap-2 items-center my-3 bg-red-500 py-3 px-4 text-white rounded-md">
-            <ErrorOutlineOutlinedIcon /> Incorrect username or password.
+          <p className="flex items-center gap-3 bg-red-100 text-red-700 py-3 px-4 rounded-[5px] text-sm border border-red-300">
+            <ErrorOutlineOutlinedIcon /> Incorrect username, email, or password.
           </p>
         )}
         {/* <div className="flex flex-col gap-3">

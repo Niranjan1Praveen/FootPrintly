@@ -90,9 +90,9 @@ function Page() {
             height={200}
             className={isBounce ? "animate-bounce" : ""}
           />
-          <div className="flex items-center justify-center absolute right-[-175px] top-[-50px]">
-            <Image src={quoteBox} alt="quote box" width={200} />
-            <small className="italic max-w-[120px] absolute z-[50]">
+          <div className="flex items-center justify-center absolute right-[-145px] top-[-50px]">
+            <Image src={quoteBox} alt="quote box" width={160} />
+            <small className="italic max-w-[100px] absolute z-[50] text-[.7rem]">
               Getting values in those fields makes me jump!
             </small>
           </div>
@@ -100,7 +100,7 @@ function Page() {
       </div>
       <div className="flex flex-col gap-4 px-8 py-10 bg-[var(--secondary-background)] rounded-xl shadow-md">
         {error && (
-          <p className="flex items-center gap-3 bg-red-100 text-red-700 py-3 px-4 rounded-lg text-sm border border-red-300">
+          <p className="flex items-center gap-3 bg-red-100 text-red-700 py-3 px-4 rounded-[5px] text-sm border border-red-300">
             <ErrorOutlineOutlinedIcon /> Incorrect username, email, or password.
           </p>
         )}
@@ -153,7 +153,7 @@ function Page() {
         <div className="flex items-center justify-between mt-4">
           <small className="flex items-center gap-1"> <Checkbox/> I agree to the Terms of Service and Privacy Policy.</small>
           <Button
-            className="w-[100px] bg-[#1ed760] transform transition-all duration-300 hover:scale-105 text-white py-2 rounded-full border-none"
+            className="w-auto bg-[#34A853] my-5 text-white p-3 rounded-full hover:bg-[#2c8c42] transition-transform transform hover:scale-105 border-none"
             onClick={handleSignup}
           >
             Sign Up

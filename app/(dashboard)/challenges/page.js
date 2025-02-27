@@ -10,7 +10,7 @@ import FootModel from "@/components/footmodel"
 
 function Page(props) {
   return (
-    <div className="flex flex-col md:flex-row gap-6 md:gap-10 items-center md:items-start p-6 md:p12 lg:p-20">
+    <div className="min-h-screen flex flex-col gap-6 section-p">
       {/* Column 1 - Daily Quests */}
       <div className="flex flex-col gap-6 w-full md:w-2/3">
         <div className="bg-[#FFD700] flex flex-col gap-3 text-black rounded-lg p-6 shadow-lg">

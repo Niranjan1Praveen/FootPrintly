@@ -16,7 +16,7 @@ export default function LandingParticles() {
     >
       <ambientLight intensity={0.7} />
       <directionalLight position={[5, 10, 5]} intensity={1} />
-      <Physics gravity={[0, 0, 0]}>
+      <Physics gravity={[0, 0.4, 0]}>
         {[...Array(40)].map((_, i) => {
           const randomX = Math.random() * 4 - 2;
           const randomY = Math.random() * 2 + 2;
@@ -36,9 +36,6 @@ export default function LandingParticles() {
 
 function DraggableSphere({ initialPosition }) {
   const ref = useRef();
-  const [isDragging, setDragging] = useState(false);
-
-  // 🛠️ Set initial position only once (Prevents resetting)
   useEffect(() => {
     if (ref.current) {
       ref.current.setTranslation(
@@ -47,27 +44,6 @@ function DraggableSphere({ initialPosition }) {
       );
     }
   }, []);
-
-  const handlePointerDown = () => {
-    setDragging(true);
-  };
-
-  const handlePointerUp = () => {
-    setDragging(false);
-    if (ref.current) {
-      ref.current.setLinvel({ x: 0, y: 0, z: 0 }, true); // Stop sudden movement
-    }
-  };
-
-  const handlePointerMove = (e) => {
-    if (isDragging && ref.current) {
-      ref.current.setTranslation(
-        { x: e.point.x, y: Math.max(1, e.point.y), z: e.point.z },
-        true
-      );
-      ref.current.setLinvel({ x: 0, y: 0, z: 0 }, true);
-    }
-  };
 
   return (
     <RigidBody
@@ -78,11 +54,7 @@ function DraggableSphere({ initialPosition }) {
       type="dynamic"
     >
       <BallCollider args={[1.5]} />
-      <mesh
-        onPointerDown={handlePointerDown}
-        onPointerUp={handlePointerUp}
-        onPointerMove={handlePointerMove}
-      >
+      <mesh>
         <sphereGeometry args={[1.5, 32, 32]} />
         <meshStandardMaterial color="#1CB0F6" />
       </mesh>

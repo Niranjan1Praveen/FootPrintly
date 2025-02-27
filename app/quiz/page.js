@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import sadLogo from "../../public/sadlogo.svg";
 import CloseIcon from "@mui/icons-material/Close";
+import EmptyList from "@/components/emptylist";
 export default function Page() {
   const [questions, setQuestions] = useState([]);
   const [index, setIndex] = useState(0);
@@ -27,17 +28,7 @@ export default function Page() {
 
   if (questions.length === 0) {
     return (
-      <section className="flex justify-center items-center flex-col h-screen bg-gradient-to-b from-black to-black/80 section-p">
-        <Image
-          src={sadLogo}
-          alt="no data available logo"
-          className="w-[100px] h-[100px]"
-        />
-        <i className="text-white text-sm">No Data Available</i>
-        <Link href={"/profile"} className="pointer underline text-sm">
-          Go Back
-        </Link>
-      </section>
+      <EmptyList/>
     );
   }
 

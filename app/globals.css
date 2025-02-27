@@ -114,16 +114,16 @@ li {
 .bubble-1 {
   width: 120px;
   height: 120px;
-  background-color: rgba(91, 115, 213, 0.4);
+  background-color: lightskyblue;
   top: 10%;
   left: 20%;
-  animation: float 10s ease-in-out infinite;
+  animation: float 5s ease-in-out infinite;
 }
 
 .bubble-2 {
   width: 100px;
   height: 100px;
-  background-color: rgba(76, 156, 255, 0.4);
+  background-color: lightseagreen;
   bottom: 0;
   animation: float 12s ease-in-out infinite;
 }
@@ -131,7 +131,7 @@ li {
 .bubble-3 {
   width: 80px;
   height: 80px;
-  background-color: rgba(79, 130, 228, 0.3);
+  background-color: lightcoral;
   top: 0;
   right: 30%;
   animation: float 8s ease-in-out infinite;
@@ -140,7 +140,7 @@ li {
 .bubble-4 {
   width: 140px;
   height: 140px;
-  background-color: rgba(72, 115, 220, 0.4);
+  background-color: yellow;
   bottom: 5%;
   right: 10%;
   animation: float 14s ease-in-out infinite;
