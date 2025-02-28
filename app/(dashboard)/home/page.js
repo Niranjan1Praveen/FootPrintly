@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import beginner from "../../../public/badges/beginner.svg";
 import explorer from "../../../public/badges/explorer.svg";
-import { Calendar } from "@/components/ui/calendar";
 import Challenges from "@/components/challenges";
 import { Flame, ArrowBigRight, SmileIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
