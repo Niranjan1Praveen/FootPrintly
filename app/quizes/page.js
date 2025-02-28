@@ -1,12 +1,9 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import nextGuitarStatic from "../../public/badges/guitarstatic.svg";
-import Image from "next/image";
-import Link from "next/link";
-import sadLogo from "../../public/badges/sadlogo.svg";
-import CloseIcon from "@mui/icons-material/Close";
 import EmptyList from "@/components/emptylist";
+import Link from "next/link";
+import { CloseFullscreen } from "@mui/icons-material";
 export default function Page() {
   const [questions, setQuestions] = useState([]);
   const [index, setIndex] = useState(0);
@@ -57,13 +54,17 @@ export default function Page() {
     if (index > 0) setIndex((prev) => prev - 1);
   };
 
-  
+  const date = new Date().toLocaleDateString();
 
   return (
-    <section className="flex justify-center flex-col h-screen bg-gradient-to-b from-black to-black/80 section-p">
-      <Link href={"/profile"} className="absolute top-0 left-0 p-5">
-        <CloseIcon />
+    <section className="flex justify-center flex-col min-h-screen section-p">
+      <h1 className="text-1xl font-bold flex items-center gap-4 text-[#1CB0F6] p-2 absolute right-0 top-0">
+        {date}
+      </h1>
+      <Link href={"/home"} className="absolute top-0 left-0 p-5">
+        <CloseFullscreen />
       </Link>
+      
       <div className="flex gap-2 w-full items-center px-[50px]">
         <ArrowBackIcon
           onClick={handlePrevious}
@@ -78,19 +79,19 @@ export default function Page() {
       </div>
 
       <div className="rounded-lg p-8 flex flex-col gap-4">
-        <div className="flex gap-2 items-center font-medium text-lg py-[30px]">
-          <p className="border border-[rgb(55,70,79)] py-[12px] px-[16px] rounded-[6px] text-[17px]">
+        <div className="flex gap-2 items-center font-medium">
+          <p className="py-[12px] px-[16px] rounded-[5px]">
             {data.QS}
           </p>
         </div>
 
-        <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 quiz-options py-[50px] px-[70px]">
+        <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 quiz-options">
           {[data.Option1, data.Option2, data.Option3, data.Option4].map(
             (option, i) => (
               <li
                 key={i}
                 className={`border-2 border-[rgba(55,70,79,1)] p-[16px] rounded-[6px] text-lg cursor-pointer w-full ${
-                  selected === i + 1 ? " bg-gray-700 border-white" : ""
+                  selected === i + 1 ? " bg-[var(--secondary-background)] border" : ""
                 }`}
                 onClick={() => handleSelect(i + 1)}
               >
@@ -99,7 +100,6 @@ export default function Page() {
             )
           )}
         </ul>
-
         <small className="text-center">
           {index + 1} of {questions.length} questions
         </small>
@@ -110,14 +110,14 @@ export default function Page() {
           {index === questions.length - 1 ? (
             <button
               onClick={handleNext}
-              className="my-[20px] uppercase text-black text-sm font-bold flex items-center justify-center px-8 py-4 rounded-full bg-[#1ed760]"
+              className="my-[20px] uppercase text-sm font-bold flex items-center justify-center px-8 py-4 rounded-full bg-[#1ed760]"
             >
-              <Link href={"/profile"}>Submit</Link>
+              <Link href={"/home"}>Submit</Link>
             </button>
           ) : (
             <button
               onClick={handleNext}
-              className="my-[20px] uppercase text-black text-sm font-bold flex items-center justify-center px-8 py-4 rounded-full bg-[#1ed760]"
+              className="my-[20px] uppercase text-sm font-bold flex items-center justify-center px-8 py-4 rounded-full bg-[#1ed760]"
             >
               Continue
             </button>

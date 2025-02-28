@@ -42,30 +42,31 @@ function Page() {
       return;
     }
     setError(false);
-    const uniqueToken = crypto.randomUUID();
-    const newUser = {
-      ...formData,
-      authToken: uniqueToken,
-    };
+    // const uniqueToken = crypto.randomUUID();
+    // const newUser = {
+    //   ...formData,
+    //   authToken: uniqueToken,
+    // };
 
-    try {
-      const response = await fetch("http://localhost:3001/api/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newUser),
-      });
-      const result = await response.json();
-      if (response.ok) {
-        router.push("/profile");
-      } else {
-        alert("Cannot Sign Up!");
-      }
-    } catch (error) {
-      console.error("Error signing up:", error);
-      alert("An error occurred. Please try again.");
-    }
+    // try {
+    //   const response = await fetch("http://localhost:3001/api/signup", {
+    //     method: "POST",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify(newUser),
+    //   });
+    //   const result = await response.json();
+    //   if (response.ok) {
+    //     router.push("/home");
+    //   } else {
+    //     alert("Cannot Sign Up!");
+    //   }
+    // } catch (error) {
+    //   console.error("Error signing up:", error);
+    //   alert("An error occurred. Please try again.");
+    // }
+    router.push("/home");
   };
 
   return (
@@ -117,7 +118,7 @@ function Page() {
           onChange={handleChange}
           onFocus={handleFocus}
           onBlur={handleBlur}
-          className="border border-gray-300"
+          className="border border-gray-300 bg-white"
         />
 
         <label className="flex items-center gap-2 text-sm text-gray-700">
@@ -132,7 +133,7 @@ function Page() {
           onChange={handleChange}
           onFocus={handleFocus}
           onBlur={handleBlur}
-          className="border border-gray-300"
+          className="border border-gray-300 bg-white"
         />
 
         <label className="flex items-center gap-2 text-sm text-gray-700">
@@ -147,7 +148,7 @@ function Page() {
           onChange={handleChange}
           onFocus={handleFocus}
           onBlur={handleBlur}
-          className="border border-gray-300"
+          className="border border-gray-300 bg-white"
         />
 
         <div className="flex items-center justify-between mt-4">

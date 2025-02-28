@@ -38,7 +38,7 @@ function Hero() {
           !
         </h1>
         <p>
-          <b>FootPrintly</b> is not good and used by jamal and ganesh.
+          <b>FootPrintly</b> is an app that helps users track their daily habits, calculate their carbon footprint, and improve sustainability through actionable insights and challenges.
         </p>
         <Button className="bg-[#1ed760] w-auto uppercase border-none outline-none hover:!bg-[#1ed760] hover:!border-none hover:!shadow-none hover:!text-black p-[20px]">
           <Link href={"/signup"}>Get Started</Link>

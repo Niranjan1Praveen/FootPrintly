@@ -7,7 +7,7 @@ const EmptyList = () => {
     <section className="flex justify-center items-center flex-col min-h-screen">
       <Image src={EmptyGif} alt="Empty List Gif" width={300} height={300} />
       <p className="text-sm uppercase">No Data Available</p>
-      <Link href={"/profile"} className="pointer underline text-sm">
+      <Link href={"/home"} className="pointer underline text-sm">
         Go Back
       </Link>
     </section>

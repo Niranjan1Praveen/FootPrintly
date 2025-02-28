@@ -34,24 +34,26 @@ function LoginPage() {
       return;
     }
 
-    try {
-      const response = await fetch("http://localhost:3002/api/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
+    // try {
+    //   const response = await fetch("http://localhost:3002/api/login", {
+    //     method: "POST",
+    //     headers: { "Content-Type": "application/json" },
+    //     body: JSON.stringify(formData),
+    //   });
 
-      const data = await response.json();
+    //   const data = await response.json();
 
-      if (response.ok) {
-        router.push("/profile");
-      } else {
-        setError(true);
-      }
-    } catch (error) {
-      console.error("Login Error:", error);
-      setError(true);
-    }
+    //   if (response.ok) {
+    //     router.push("/profile");
+    //   } else {
+    //     setError(true);
+    //   }
+    // } catch (error) {
+    //   console.error("Login Error:", error);
+    //   setError(true);
+    // }
+    router.push("/home");
+
   };
 
   return (
@@ -75,11 +77,6 @@ function LoginPage() {
             <ErrorOutlineOutlinedIcon /> Incorrect username, email, or password.
           </p>
         )}
-        {/* <div className="flex flex-col gap-3">
-          <Button className="flex items-center justify-center gap-3 w-full bg-[#34A853] text-white py-2 rounded-md hover:bg-[#357ae8]">
-            <GoogleIcon /> Continue with Google
-          </Button>
-        </div> */}
         <div className="flex flex-col gap-4">
           <label className="text-gray-600 text-sm">Email or username</label>
           <Input
@@ -88,7 +85,7 @@ function LoginPage() {
             placeholder="Enter your email or username"
             value={formData.username}
             onChange={handleChange}
-            className="border border-gray-300"
+            className="border border-gray-300 bg-white"
           />
           <label className="text-gray-600 text-sm">Password</label>
           <Input
@@ -97,7 +94,7 @@ function LoginPage() {
             placeholder="Enter your password"
             value={formData.password}
             onChange={handleChange}
-            className="border border-gray-300"
+            className="border border-gray-300 bg-white"
           />
           <Button
             className="w-full bg-[#34A853] my-5 text-white py-3 rounded-full hover:bg-[#2c8c42] transition-transform transform hover:scale-105 border-none"

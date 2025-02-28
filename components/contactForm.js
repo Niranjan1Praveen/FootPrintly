@@ -6,7 +6,7 @@ import { HelpCircle, Mail, Send } from "lucide-react";
 function ContactForm(props) {
   return (
     <main>
-      <div className="bg-[var(--secondary-background)] flex flex-col items-center justify-center p-20 gap-5 rounded-full shadow-sm border-[4px] border-[#1CB0F6]">
+      <div className="bg-[var(--secondary-background)] flex flex-col items-center justify-center gap-5 shadow-sm p-5 rounded-[5px]">
         <h2 className="text-2xl text-center font-semibold gap-2">
           Get in Touch
         </h2>
@@ -22,7 +22,7 @@ function ContactForm(props) {
           </div>
           <Textarea
             placeholder="Your Message"
-            className="w-full rounded-[6px] border-2 border-gray-300 bg-white"
+            className="w-full rounded-[6px] border-2 border-gray-300 bg-white resize-none"
           />
           <button
             type="submit"

@@ -45,7 +45,7 @@ export default function Header() {
           </Link>
         </li>
         <li className="flex items-center gap-2 cursor-pointer">
-          <Link href={"/signup"}>
+          <Link href={"/login"}>
             <Image src={signIn} className="w-5 h-5" alt="Logout" />
           </Link>
         </li>
