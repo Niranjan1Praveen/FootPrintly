@@ -34,26 +34,24 @@ function LoginPage() {
       return;
     }
 
-    // try {
-    //   const response = await fetch("http://localhost:3002/api/login", {
-    //     method: "POST",
-    //     headers: { "Content-Type": "application/json" },
-    //     body: JSON.stringify(formData),
-    //   });
+    try {
+      const response = await fetch("http://localhost:3001/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
 
-    //   const data = await response.json();
+      const data = await response.json();
 
-    //   if (response.ok) {
-    //     router.push("/profile");
-    //   } else {
-    //     setError(true);
-    //   }
-    // } catch (error) {
-    //   console.error("Login Error:", error);
-    //   setError(true);
-    // }
-    router.push("/home");
-
+      if (response.ok) {
+        router.push("/home");
+      } else {
+        setError(true);
+      }
+    } catch (error) {
+      console.error("Login Error:", error);
+      setError(true);
+    }
   };
 
   return (
@@ -74,7 +72,7 @@ function LoginPage() {
         </h2>
         {error && (
           <p className="flex items-center gap-3 bg-red-100 text-red-700 py-3 px-4 rounded-[5px] text-sm border border-red-300">
-            <ErrorOutlineOutlinedIcon /> Incorrect username, email, or password.
+            <ErrorOutlineOutlinedIcon /> Invalid credentials.
           </p>
         )}
         <div className="flex flex-col gap-4">

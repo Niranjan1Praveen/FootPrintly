@@ -82,7 +82,7 @@ export default function Navbar() {
           </li>
         </Link>
         <hr className="w-full h-[3px] text-gray-300" />
-        {/* Quizzes */}
+        {/* Quizes */}
         <Link href={"/quiz"}>
           <li className="flex items-center gap-4 p-4 cursor-pointer rounded-[5px] relative">
             <QuestionAnswerIcon className="icon" />
