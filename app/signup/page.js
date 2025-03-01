@@ -66,7 +66,6 @@ function Page() {
         alert("Cannot Sign Up!");
       }
     } catch (error) {
-      console.error("Error signing up:", error);
       alert("An error occurred. Please try again.");
     }
   };
@@ -165,7 +164,7 @@ function Page() {
           onChange={handleChange}
           onFocus={handleFocus}
           onBlur={handleBlur}
-          className="border border-gray-300 bg-white rounded-[6px]"
+          className="border border-gray-300 bg-white rounded-[6px] h-28"
         />
         <div className="flex items-center justify-between mt-4">
           <small className="flex items-center gap-1">

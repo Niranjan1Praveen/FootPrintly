@@ -145,27 +145,3 @@ li {
   right: 10%;
   animation: float 14s ease-in-out infinite;
 }
-
-
-
-@layer base {}
-
-
-
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
-}
-
-.card{
-  height:200px;
-  padding:15px;
-  position:relative;
-  background-color: var(--secondary-background);
-  border-radius: 10px;
-  cursor: pointer;
-}

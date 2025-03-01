@@ -5,7 +5,7 @@ import Timer from "@/app/timer";
 
 function Challenges(props) {
   const maxPoints = 500;
-  const [points, setPoints] = useState(300);
+  const [points, setPoints] = useState(10);
   const progressPercentage = (points / maxPoints) * 100;
   return (
     <div>
