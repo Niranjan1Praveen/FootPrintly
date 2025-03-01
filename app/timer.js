@@ -26,8 +26,8 @@ const Timer = () => {
   }, []);
 
   return (
-    <div style={{ fontSize: "20px", textAlign: "center" }}>
-      Time until refresh: {timeLeft.hours}h {timeLeft.minutes}m {timeLeft.seconds}s
+    <div style={{ fontSize: "0.8rem " }}>
+      (Time until refresh: {timeLeft.hours}h {timeLeft.minutes}m {timeLeft.seconds}s)
     </div>
   );
 };

@@ -1,9 +1,8 @@
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
 import React from "react";
 import { Trophy, Star, TrophyIcon } from "lucide-react";
 
-function Page() {
+function Leaderboards() {
   const leaderboardData = [
     { position: 1, name: "Alice", trophies: 320, league: "Eco Warrior" },
     {
@@ -21,8 +20,8 @@ function Page() {
   ];
 
   return (
-    <main className="min-h-screen flex flex-col gap-10 section-p">
-      <h1 className="text-4xl font-bold flex items-center gap-4 text-[#1CB0F6]">
+    <main className="flex flex-col">
+      <h1 className="font-bold text-lg">
         Leaderboards
       </h1>
       {/* Leaderboard List */}
@@ -54,4 +53,4 @@ function Page() {
   );
 }
 
-export default Page;
+export default Leaderboards;

@@ -12,7 +12,8 @@ import logo from "../public/logo/logo.png";
 
 import Image from "next/image";
 import Rewards from "./rewards";
-import { PhotoAlbum } from "@mui/icons-material";
+import { ChatBubbleTwoTone, PhotoAlbum } from "@mui/icons-material";
+import { Laptop2Icon } from "lucide-react";
 
 export default function Navbar() {
   const [isNavbarOpen, setIsNavbarOpen] = useState(true);
@@ -67,16 +68,16 @@ export default function Navbar() {
           </li>
         </Link>
         <hr className="w-full h-[3px] text-gray-300" />
-        {/* LeaderBoards */}
-        <Link href="/leaderboard">
+        {/* Gemini */}
+        <Link href="/gemini">
           <li className="flex items-center gap-4 p-4 cursor-pointer rounded-[5px]">
-            <LeaderboardIcon className="icon" />
+            <Laptop2Icon className="icon" />
             <p
               className={`text-sm uppercase transition-all duration-300 ${
                 isNavbarOpen ? "block" : "hidden"
               }`}
             >
-              LeaderBoards
+              Gemini
             </p>
           </li>
         </Link>

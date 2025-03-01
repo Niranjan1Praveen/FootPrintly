@@ -10,7 +10,7 @@ export default function LandingParticles() {
       className="h-screen"
       camera={{ position: [0, 10, 10] }}
       style={{
-        zIndex: "-50",
+        zIndex: "-500",
         position: "absolute",
       }}
     >

@@ -12,6 +12,8 @@ import Person4Icon from "@mui/icons-material/Person4";
 import EmailIcon from "@mui/icons-material/Email";
 import PasswordIcon from "@mui/icons-material/Password";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Description, InputOutlined } from "@mui/icons-material";
+import { Textarea } from "@/components/ui/textarea";
 function Page() {
   const [error, setError] = useState(false);
   const [isBounce, setIsBounce] = useState(false);
@@ -21,6 +23,7 @@ function Page() {
     password: "",
     email: "",
     authToken: "",
+    bio: "",
   });
   const handleFocus = () => {
     setIsBounce(true);
@@ -37,36 +40,35 @@ function Page() {
   };
 
   const handleSignup = async () => {
-    if (!formData.username || !formData.email || !formData.password) {
+    if (!formData.username || !formData.email || !formData.password || !formData.bio) {
       setError(true);
       return;
     }
     setError(false);
-    // const uniqueToken = crypto.randomUUID();
-    // const newUser = {
-    //   ...formData,
-    //   authToken: uniqueToken,
-    // };
+    const uniqueToken = crypto.randomUUID();
+    const newUser = {
+      ...formData,
+      authToken: uniqueToken,
+    };
 
-    // try {
-    //   const response = await fetch("http://localhost:3001/api/signup", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify(newUser),
-    //   });
-    //   const result = await response.json();
-    //   if (response.ok) {
-    //     router.push("/home");
-    //   } else {
-    //     alert("Cannot Sign Up!");
-    //   }
-    // } catch (error) {
-    //   console.error("Error signing up:", error);
-    //   alert("An error occurred. Please try again.");
-    // }
-    router.push("/home");
+    try {
+      const response = await fetch("http://localhost:3001/api/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newUser),
+      });
+      const result = await response.json();
+      if (response.ok) {
+        router.push("/home");
+      } else {
+        alert("Cannot Sign Up!");
+      }
+    } catch (error) {
+      console.error("Error signing up:", error);
+      alert("An error occurred. Please try again.");
+    }
   };
 
   return (
@@ -86,6 +88,7 @@ function Page() {
         <div className="flex items-center relative">
           <Image
             src={logo}
+            priority
             alt="bounce logo icon"
             width={200}
             height={200}
@@ -150,9 +153,25 @@ function Page() {
           onBlur={handleBlur}
           className="border border-gray-300 bg-white"
         />
-
+<label className="flex items-center gap-2 text-sm text-gray-700">
+          <Description className="icon" />
+          Bio
+        </label>
+        <Textarea
+          type="bio"
+          name="bio"
+          placeholder="Tell us about yourself"
+          value={formData.bio}
+          onChange={handleChange}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          className="border border-gray-300 bg-white rounded-[6px]"
+        />
         <div className="flex items-center justify-between mt-4">
-          <small className="flex items-center gap-1"> <Checkbox/> I agree to the Terms of Service and Privacy Policy.</small>
+          <small className="flex items-center gap-1">
+            {" "}
+            <Checkbox /> I agree to the Terms of Service and Privacy Policy.
+          </small>
           <Button
             className="w-auto bg-[#34A853] my-5 text-white p-3 rounded-full hover:bg-[#2c8c42] transition-transform transform hover:scale-105 border-none"
             onClick={handleSignup}
