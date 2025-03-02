@@ -30,7 +30,7 @@ export default function Header() {
           <Image src={xmark} alt="Close navbar" className="w-6 h-6" />
         </li>
         <li>
-          <Link href={"/"} className="text-gray-900 font-medium hover:underline">
+          <Link href={"/home"} className="text-gray-900 font-medium hover:underline">
             Start
           </Link>
         </li>

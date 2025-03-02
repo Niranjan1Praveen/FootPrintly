@@ -6,7 +6,7 @@ import { Suspense, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 
 function ButtonModel({ position, textPosition, day, color }) {
-  const { scene } = useGLTF("/glb/button.glb");
+  const { scene } = useGLTF("/glb/button2.glb");
   const router = useRouter();
   const modelRef = useRef();
   const [hovered, setHovered] = useState(false);
