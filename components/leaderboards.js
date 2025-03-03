@@ -1,6 +1,14 @@
-import { Button } from "@/components/ui/button";
 import React from "react";
-import { Trophy, Star, TrophyIcon } from "lucide-react";
+import { Trophy, Star } from "lucide-react";
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
 
 function Leaderboards() {
   const leaderboardData = [
@@ -21,11 +29,9 @@ function Leaderboards() {
 
   return (
     <main className="flex flex-col">
-      <h1 className="font-bold text-lg">
-        Leaderboards
-      </h1>
+      <h1 className="font-bold text-lg">Leaderboards</h1>
       {/* Leaderboard List */}
-      <div className="flex flex-col py-5 gap-6 w-full">
+      {/* <div className="flex flex-col py-5 gap-6 w-full">
         {leaderboardData.map((user, index) => (
           <div
             key={user.position}
@@ -48,6 +54,28 @@ function Leaderboards() {
             )}
           </div>
         ))}
+      </div> */}
+      <div className="py-5 w-full">
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead className="w-[100px]">Username</TableHead>
+              <TableHead>Position</TableHead>
+              <TableHead>Trophies</TableHead>
+              <TableHead className="text-right">Tier</TableHead>
+            </TableRow>
+          </TableHeader>
+          {leaderboardData.map((user, index) => (
+            <TableBody>
+              <TableRow>
+                <TableCell className="font-medium">{user.name}</TableCell>
+                <TableCell>{user.position}</TableCell>
+                <TableCell>{user.trophies}</TableCell>
+                <TableCell className="text-right">{user.league}</TableCell>
+              </TableRow>
+            </TableBody>
+          ))}
+        </Table>
       </div>
     </main>
   );

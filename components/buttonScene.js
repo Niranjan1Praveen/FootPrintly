@@ -11,11 +11,11 @@ function ButtonModel({ position, textPosition, day, color }) {
   const modelRef = useRef();
   const [hovered, setHovered] = useState(false);
 
-  useFrame(() => {
-    if (modelRef.current) {
-      modelRef.current.rotation.y += 0.005;
-    }
-  });
+  // useFrame(() => {
+  //   if (modelRef.current) {
+  //     modelRef.current.rotation.y += 0.005;
+  //   }
+  // });
 
   const handleClick = () => {
     router.push("/quizes");
@@ -103,7 +103,7 @@ export default function ButtonScene() {
   return (
     <div className="w-screen h-screen">
       <Canvas
-        camera={{ position: [0, 20, 25], fov: 50 }}
+        camera={{ position: [0, 25, 30], fov: 45 }}
         className="absolute inset-0"
       >
         <ambientLight intensity={0.4} />

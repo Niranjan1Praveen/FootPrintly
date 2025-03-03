@@ -2,7 +2,6 @@
 import React, { useEffect } from "react";
 import { Button } from "./ui/button";
 import Link from "next/link";
-import LandingParticles from "./landingParticles";
 function Hero() {
   const heroStrong = ["Impacts", "Stories", "Changes"];
   const [currentText, setCurrentText] = React.useState(heroStrong[0]);
@@ -24,7 +23,6 @@ function Hero() {
   return (
     <div className="section-p flex gap-40 items-center justify-center">
       {/* Hero Content */}
-      <LandingParticles />
       <div className="flex flex-col items-center justify-between gap-10 w-[70%] py-[50px] text-center">
         <h1 className="font-bold text-5xl leading-tight">
           From Small Steps to Big{" "}

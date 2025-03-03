@@ -1,19 +1,16 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 import MenuIcon from "@mui/icons-material/Menu";
 import Link from "next/link";
-import LeaderboardIcon from "@mui/icons-material/Leaderboard";
 import QuestionAnswerIcon from "@mui/icons-material/QuestionAnswer";
 import LiveHelpIcon from "@mui/icons-material/LiveHelp";
 import Person4Icon from "@mui/icons-material/Person4";
 import GradeIcon from "@mui/icons-material/Grade";
-import logo from "../public/logo/logo.png";
 
-import Image from "next/image";
 import Rewards from "./rewards";
 import { ChatBubbleTwoTone, PhotoAlbum } from "@mui/icons-material";
 import { Laptop2Icon } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 
 export default function Navbar() {
   const [isNavbarOpen, setIsNavbarOpen] = useState(true);
@@ -35,7 +32,7 @@ export default function Navbar() {
   return (
     <div
       className={`min-h-screen transition-all duration-300 flex flex-col shadow-md items-center bg-[var(--secondary-background)]
-      ${isNavbarOpen ? "w-[220px]" : "w-[55px]"}`}
+      ${isNavbarOpen ? "min-w-[200px]" : "min-w-[55px]"}`}
     >
       {/* Menu Button */}
       <div className="flex justify-between items-center p-4 gap-4 w-full">
@@ -44,7 +41,10 @@ export default function Navbar() {
           ${isNavbarOpen ? "block" : "hidden"}`}
         >
           <Link href={"/"}>
-            <Image src={logo} alt="navbar logo" width={40} height={40} />
+            <Avatar>
+              <AvatarImage src="https://github.com/shadcn.png" />
+              <AvatarFallback>CN</AvatarFallback>
+            </Avatar>
           </Link>
         </h2>
         <MenuIcon
@@ -114,7 +114,7 @@ export default function Navbar() {
         {/* Gallery */}
         <Link href="/gallery">
           <li className="flex items-center gap-4 p-4 cursor-pointer rounded-[5px]">
-            <PhotoAlbum className="icon"/>
+            <PhotoAlbum className="icon" />
             <p
               className={`text-sm uppercase transition-all duration-300 ${
                 isNavbarOpen ? "block" : "hidden"
@@ -133,7 +133,7 @@ export default function Navbar() {
               isNavbarOpen ? "block" : "hidden"
             }`}
           >
-            <Rewards/>
+            <Rewards />
           </div>
         </li>
         <hr className="w-full h-[3px] text-gray-300" />

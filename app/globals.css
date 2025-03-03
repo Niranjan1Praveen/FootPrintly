@@ -2,7 +2,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-boxs;
+}
 :root {
   --primary-background: #ffffff;
   --secondary-background: #F0F1F3;
@@ -27,7 +31,7 @@ p {
 }
 
 .section-p {
-  padding: 30px 250px;
+  padding: 30px 220px;
 }
 .icon {
   width: 20px;

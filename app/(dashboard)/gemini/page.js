@@ -1,9 +1,10 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { FileQuestionIcon, SendIcon } from "lucide-react";
+import { FileQuestionIcon, Mic, Mic2, PlusIcon, SendIcon } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_API_KEY;
 
@@ -12,11 +13,13 @@ function Page() {
   const [response, setResponse] = useState("");
   const [loading, setLoading] = useState(false);
   const [typing, setTyping] = useState(false);
+  const [isResLoaded, setIsResLoaded] = useState(false);
 
   const sendPrompt = async () => {
     if (!prompt.trim()) return;
     setLoading(true);
     setResponse("");
+    // setPrompt("");
     setTyping(false);
 
     try {
@@ -25,6 +28,7 @@ function Page() {
       const chatSession = model.startChat({ history: [] });
       const result = await chatSession.sendMessage(prompt);
       const aiResponse = await result.response.text();
+      setIsResLoaded(true);
       setLoading(false);
       setTyping(true);
       displayTypingEffect(aiResponse);
@@ -37,7 +41,7 @@ function Page() {
 
   const displayTypingEffect = (text) => {
     let index = 0;
-    setResponse(text.charAt(0)); // Initialize with the first character
+    setResponse(text.charAt(0));
 
     const interval = setInterval(() => {
       index++;
@@ -46,64 +50,94 @@ function Page() {
         clearInterval(interval);
         setTyping(false);
       }
-    }, 10); 
+    }, 5);
   };
 
-  // Convert markdown-style bold ( **text** ) to actual <b>text</b>
   const formatResponse = (text) => {
-    return text.replace(/\*\*(.*?)\*\*/g, "<b>$1</b>");
+    return text
+      .replace(/`/g, "")
+      .replace(/\*\*(.*?)\*\*/g, "<b>$1</b>")
+      .replace(/\n/g, "<br>");
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      sendPrompt();
+    }
   };
 
   return (
-    <div className="flex flex-col min-h-screen section-p gap-10">
+    <main className="flex flex-col min-h-screen section-p gap-2">
       <div className="flex items-center p-[20px] gap-3">
+        <Avatar>
+          <AvatarImage src="https://github.com/shadcn.png" />
+          <AvatarFallback>User</AvatarFallback>
+        </Avatar>
         <p className="text-lg">Gemini</p>
         <small>({new Date().toLocaleDateString()})</small>
       </div>
 
-      <div>
-        <p className="text-4xl text-center">How can I help you today?</p>
+      <div className="flex flex-col flex-grow overflow-y-auto">
+        {!isResLoaded && (
+          <p className="text-4xl text-center">How can I help you today?</p>
+        )}
 
-        <div className="grid lg:grid-cols-4 gap-[15px] md:grid-cols-2 py-[75px]">
-          {[1, 2, 3, 4].map((index) => (
-            <div
-              className="bg-[var(--secondary-background)] p-10 rounded-[5px] relative min-h-[200px] cursor-pointer hover:bg-gray-200"
-              key={index}
-            >
-              <p>Suggest how can I be more eco-friendly in my daily life.</p>
-              <FileQuestionIcon className="absolute bottom-2 right-2" />
+        {!isResLoaded && (
+          <div className="grid lg:grid-cols-4 gap-[15px] md:grid-cols-2 py-[75px]">
+            {[1, 2, 3, 4].map((index) => (
+              <div
+                className="bg-[var(--secondary-background)] p-10 rounded-[5px] relative min-h-[200px] cursor-pointer hover:bg-gray-200"
+                key={index}
+              >
+                <p>Suggest how can I be more eco-friendly in my daily life.</p>
+                <FileQuestionIcon className="absolute bottom-2 right-2" />
+              </div>
+            ))}
+          </div>
+        )}
+        {isResLoaded && <div className="bg-[var(--secondary-background)] rounded-l-full rounded-br-full rounded-tr-[5px] px-4 py-2 self-end w-auto max-w-[75%]">
+          {prompt}
+        </div>}
+        {loading ? (
+          <div className="flex flex-col gap-2 py-5">
+            <Skeleton className="w-full p-2 rounded-[5px]" />
+            <Skeleton className="w-full p-2 rounded-[5px]" />
+            <Skeleton className="w-full p-2 rounded-[5px]" />
+          </div>
+        ) : (
+          response && (
+            <div className="p-5 max-h-[700px] overflow-y-scroll">
+              <p
+                className="whitespace-pre-line"
+                dangerouslySetInnerHTML={{ __html: formatResponse(response) }}
+              ></p>
+              {typing && <span className="animate-pulse">▍</span>}
             </div>
-          ))}
-        </div>
+          )
+        )}
       </div>
 
-      <div className="flex items-center justify-between bg-[var(--secondary-background)] rounded-full px-[16px] py-2">
+      <div className="sticky bottom-0 left-0 bg-[var(--secondary-background)] px-4 py-2 flex items-center justify-between rounded-full">
+        <PlusIcon className="cursor-pointer ml-2 transition hover:scale-125" />
         <Input
           type="text"
           placeholder="Enter prompt here"
-          className="border-none outline-none hover:outline-none shadow-none"
+          className="border-none outline-none hover:outline-none shadow-none w-full"
           value={prompt}
           onChange={(e) => setPrompt(e.target.value)}
+          onKeyDown={handleKeyDown}
         />
-        <SendIcon onClick={sendPrompt} className="cursor-pointer" />
+        <Mic className="cursor-pointer ml-2 transition hover:scale-125" />
+        <SendIcon
+          onClick={sendPrompt}
+          className="cursor-pointer ml-2 transition hover:scale-125"
+        />
       </div>
 
-      {loading ? (
-        <div className="flex flex-col gap-2">
-          <Skeleton className="w-full p-2 rounded-[5px]" />
-          <Skeleton className="w-full p-2 rounded-[5px]" />
-          <Skeleton className="w-full p-2 rounded-[5px]" />
-        </div>
-      ) : response && (
-        <div className="p-5">
-          <p
-            className="whitespace-pre-line"
-            dangerouslySetInnerHTML={{ __html: formatResponse(response) }}
-          ></p>
-          {typing && <span className="animate-pulse">▍</span>}
-        </div>
-      )}
-    </div>
+      <small className="text-center">
+        Gemini can make mistakes, so double-check it.
+      </small>
+    </main>
   );
 }
 

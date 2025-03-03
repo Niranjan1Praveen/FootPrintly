@@ -1,10 +1,10 @@
-"use client";
-import { useState, useEffect } from "react";
+
 import Image from "next/image";
 import beginner from "../../../public/badges/beginner.svg";
 import explorer from "../../../public/badges/explorer.svg";
 import Challenges from "@/components/challenges";
 import { Flame, ArrowBigRight } from "lucide-react";
+
 
 import Highlight from "@/components/highlight";
 import Leaderboards from "@/components/leaderboards";

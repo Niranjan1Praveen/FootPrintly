@@ -49,7 +49,7 @@ function DraggableSphere({ initialPosition }) {
     <RigidBody
       ref={ref}
       colliders={false}
-      restitution={1}
+      restitution={0.3}
       gravityScale={3}
       type="dynamic"
     >
