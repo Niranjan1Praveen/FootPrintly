@@ -15,7 +15,7 @@ const Page = () => {
       <h1 className="text-4xl font-bold flex items-center gap-4 text-[#1CB0F6]">
         <HelpCircle /> Frequently Asked Questions
       </h1>
-      <main className="flex gap-20 flex-wrap items-start justify-between">
+      <main className="grid gap-20 md:grid-cols-2">
         {/* FAQ Section */}
         <div className="flex flex-col gap-10 max-w-[600px]">
           <Accordion type="single" collapsible>

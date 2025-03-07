@@ -14,7 +14,6 @@ import PasswordIcon from "@mui/icons-material/Password";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Description, InputOutlined } from "@mui/icons-material";
 import { Textarea } from "@/components/ui/textarea";
-import { Phone } from "lucide-react";
 function Page() {
   const [error, setError] = useState(false);
   const [isBounce, setIsBounce] = useState(false);
@@ -67,6 +66,7 @@ function Page() {
       });
       const result = await response.json();
       if (response.ok) {
+        localStorage.setItem("authToken", uniqueToken);
         router.push("/home");
       } else {
         alert("Cannot Sign Up!");
@@ -138,19 +138,6 @@ function Page() {
           name="email"
           placeholder="Enter your email"
           value={formData.email}
-          onChange={handleChange}
-          onFocus={handleFocus}
-          onBlur={handleBlur}
-          className="border border-gray-300 bg-white"
-        />
-        <label className="flex items-center gap-2 text-sm text-gray-700">
-          <Phone className="icon" />
-          Phone Number
-        </label>
-        <Input
-          type="number"
-          name="phoneNumber"
-          placeholder="Your phone number"
           onChange={handleChange}
           onFocus={handleFocus}
           onBlur={handleBlur}

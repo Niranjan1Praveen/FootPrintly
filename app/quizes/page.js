@@ -5,12 +5,17 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { CloseOutlined } from "@mui/icons-material";
 import EmptyList from "@/components/emptylist";
 import Link from "next/link";
+import axios from "axios";
+import { useRouter } from "next/navigation";
 
 export default function Page({ params }) {
+  const router = useRouter();
+
   const [questions, setQuestions] = useState([]);
   const [index, setIndex] = useState(0);
   const [selected, setSelected] = useState(null);
   const [totalScore, setTotalScore] = useState(0);
+  const [previousScore, setPreviousScore] = useState(0);
 
   useEffect(() => {
     fetch("http://localhost:3001/api/questions")
@@ -29,11 +34,48 @@ export default function Page({ params }) {
     setSelected(optionIndex);
   };
 
-  const handleNext = () => {
-    if (selected !== null && index < questions.length - 1) {
-      setIndex((prev) => prev + 1);
-      setSelected(null);
+  const handleNext = async () => {
+    if (selected !== null && index < questions.length) {
+      try {
+        const selectedScore =
+          selected === 1 ? data.op1score :
+          selected === 2 ? data.op2score :
+          selected === 3 ? data.op3score :
+          selected === 4 ? data.op4score :
+          0;
+
+        const newTotalScore = totalScore + selectedScore;
+
+        const randomData = {
+          UserID: localStorage.getItem("authToken"),
+          QuestionID: parseInt(data.QuestionID, 10) || 0,
+          Response: selected ? selected.toString() : "Unknown",
+          Timestamp: new Date().toISOString(),
+          PreviousScore: previousScore, 
+          TotalScore: newTotalScore,
+          DailyScore: newTotalScore,
+          ChallengeCompletionStatus: data.ChallengeCompletionStatus?.toString() || "Incomplete",
+        };
+
+        await axios.post("http://127.0.0.1:5000/add_score", randomData, {
+          headers: { "Content-Type": "application/json" },
+        });
+
+        console.log("Score submitted successfully:", randomData);
+
+        setPreviousScore(selectedScore);
+        setTotalScore(newTotalScore);
+        setIndex((prev) => prev + 1);
+        setSelected(null);
+      } catch (error) {
+        console.error("Error submitting score:", error);
+      }
     }
+  };
+
+  const handleSubmit = async () => {
+    console.log("Content saved");
+    router.push("/home");
   };
 
   const handlePrevious = () => {
@@ -51,10 +93,7 @@ export default function Page({ params }) {
 
       {/* Progress Bar */}
       <div className="flex gap-2 w-full items-center px-[50px]">
-        <ArrowBackIcon
-          onClick={handlePrevious}
-          className="icon cursor-pointer"
-        />
+        <ArrowBackIcon onClick={handlePrevious} className="icon cursor-pointer" />
         <div className="relative w-full bg-[rgb(55,70,79)] rounded-full h-[10px]">
           <motion.span
             initial={{ width: 0 }}
@@ -74,17 +113,6 @@ export default function Page({ params }) {
         className="rounded-lg p-8 flex flex-col gap-4"
       >
         <div className="flex gap-4 items-center font-medium">
-          {/* Question Text */}
-          {/* <motion.img
-            key={index}
-            src="/logo/logo.png"
-            alt="Question Image"
-            initial={{ opacity: 0, x: 10 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -10 }}
-            transition={{ duration: 0.3 }}
-            className="w-12 h-12 md:w-16 md:h-16 object-cover rounded-lg shadow-md"
-          /> */}
           <motion.p
             initial={{ scale: 0.9 }}
             animate={{ scale: 1 }}
@@ -97,49 +125,27 @@ export default function Page({ params }) {
 
         {/* Options */}
         <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 quiz-options py-10">
-          {[data.Option1, data.Option2, data.Option3, data.Option4].map(
-            (option, i) => (
-              <motion.li
-                key={i}
-                whileTap={{ scale: 0.9 }}
-                whileHover={{ scale: 1.03 }}
-                className={`border-2 border-[rgba(55,70,79,1)] overflow-hidden p-[16px] rounded-[6px] text-lg cursor-pointer w-full transition-all ${
-                  selected === i + 1
-                    ? "bg-[var(--secondary-background)] border shadow-lg"
-                    : ""
-                }`}
-                onClick={() => handleSelect(i + 1)}
-              >
-                {option}
-              </motion.li>
-            )
-          )}
+          {[data.Option1, data.Option2, data.Option3, data.Option4].map((option, i) => (
+            <motion.li
+              key={i}
+              whileTap={{ scale: 0.9 }}
+              whileHover={{ scale: 1.03 }}
+              className={`border-2 border-[rgba(55,70,79,1)] overflow-hidden p-[16px] rounded-[6px] text-lg cursor-pointer w-full transition-all ${selected === i + 1 ? "bg-[var(--secondary-background)] border shadow-lg" : ""}`}
+              onClick={() => handleSelect(i + 1)}
+            >
+              {option}
+            </motion.li>
+          ))}
         </ul>
 
-        {/* Question Progress */}
-        <small className="text-center">
-          {index + 1} of {questions.length} questions
-        </small>
-
+        <small className="text-center">{index + 1} of {questions.length} questions</small>
         <hr className="w-full" />
 
-        {/* Next Button */}
         <div className="flex justify-end">
           {index === questions.length - 1 ? (
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              className="my-[20px] uppercase text-sm font-bold flex items-center justify-center px-8 py-4 rounded-full bg-[#1ed760]"
-            >
-              <Link href={"/home"}>Submit 🎉</Link>
-            </motion.button>
+            <motion.button whileHover={{ scale: 1.05 }} onClick={handleSubmit} className="my-[20px] uppercase text-sm font-bold flex items-center justify-center px-8 py-4 rounded-full bg-[#1ed760]">Submit 🎉</motion.button>
           ) : (
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              onClick={handleNext}
-              className="my-[20px] uppercase text-sm font-bold flex items-center justify-center px-8 py-4 rounded-full bg-[#1ed760]"
-            >
-              Continue
-            </motion.button>
+            <motion.button whileHover={{ scale: 1.05 }} onClick={handleNext} className="my-[20px] uppercase text-sm font-bold flex items-center justify-center px-8 py-4 rounded-full bg-[#1ed760]">Continue</motion.button>
           )}
         </div>
       </motion.div>

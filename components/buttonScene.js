@@ -11,12 +11,6 @@ function ButtonModel({ position, textPosition, day, color }) {
   const modelRef = useRef();
   const [hovered, setHovered] = useState(false);
 
-  // useFrame(() => {
-  //   if (modelRef.current) {
-  //     modelRef.current.rotation.y += 0.005;
-  //   }
-  // });
-
   const handleClick = () => {
     router.push("/quizes");
   };
@@ -52,6 +46,12 @@ function ButtonModel({ position, textPosition, day, color }) {
     </>
   );
 }
+
+function RoadModel() {
+  const { scene } = useGLTF("/glb/road.glb");
+  return <primitive object={scene} position={[0, -5, 0]} scale={[15, 15, 15]} />;
+}
+
 export default function ButtonScene() {
   const today = new Date();
 
@@ -99,24 +99,18 @@ export default function ButtonScene() {
       color: "#FFD699",
     }, // Light Orange
   ];
-
+  const determineFOV = () => {
+    return window.innerWidth > 768 ? 45 : 90; 
+  };
   return (
     <div className="w-screen h-screen">
-      <Canvas
-        camera={{ position: [0, 25, 30], fov: 45 }}
-        className="absolute inset-0"
-      >
+      <Canvas camera={{ position: [0, 25, 30], fov: determineFOV() }} className="absolute inset-0">
         <ambientLight intensity={0.4} />
         <directionalLight position={[5, 5, 5]} intensity={1} />
         <Suspense fallback={null}>
+          <RoadModel />
           {buttonData.map(({ position, textPosition, day, color }, index) => (
-            <ButtonModel
-              key={index}
-              position={position}
-              textPosition={textPosition}
-              day={day}
-              color={color}
-            />
+            <ButtonModel key={index} position={position} textPosition={textPosition} day={day} color={color} />
           ))}
         </Suspense>
         <OrbitControls enableRotate={false} enablePan={false} />
@@ -124,3 +118,9 @@ export default function ButtonScene() {
     </div>
   );
 }
+
+// useFrame(() => {
+  //   if (modelRef.current) {
+  //     modelRef.current.rotation.y += 0.005;
+  //   }
+  // });

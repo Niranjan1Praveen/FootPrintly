@@ -66,7 +66,7 @@ function Leaderboards() {
             </TableRow>
           </TableHeader>
           {leaderboardData.map((user, index) => (
-            <TableBody>
+            <TableBody key={index}>
               <TableRow>
                 <TableCell className="font-medium">{user.name}</TableCell>
                 <TableCell>{user.position}</TableCell>
