@@ -114,6 +114,22 @@ li {
     transform: translateY(0px);
   }
 }
+/* Shine animation */
+@keyframes shine {
+  0% {
+    background-position: -200%;
+  }
+  100% {
+    background-position: 200%;
+  }
+}
+
+.animate-shine {
+  background-image: linear-gradient(110deg, #FFD700 30%, #fff 50%, #FFD700 70%);
+  background-size: 200% 100%;
+  animation: shine 3s linear infinite;
+}
+
 /* Bubbles */
 .bubble-1 {
   width: 120px;

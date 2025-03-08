@@ -105,7 +105,7 @@ export default function ButtonScene() {
         <ambientLight intensity={0.4} />
         <directionalLight position={[5, 5, 5]} intensity={1} />
         <Suspense fallback={null}>
-          <RoadModel />
+          {/* <RoadModel /> */}
           {buttonData.map(({ position, textPosition, day, color }, index) => (
             <ButtonModel key={index} position={position} textPosition={textPosition} day={day} color={color} />
           ))}

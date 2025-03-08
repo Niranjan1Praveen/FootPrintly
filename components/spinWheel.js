@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion"; // For smooth animations
 import { Button } from "./ui/button";
-import { FerrisWheel } from "lucide-react";
+import { FerrisWheelIcon } from "lucide-react";
 
 const challenges = [
   "♻️ Recycle 5 plastic bottles",
@@ -36,7 +36,7 @@ function SpinWheel() {
         transition={{ duration: 2, ease: "easeOut" }}
         className="w-40 h-40 flex items-center rounded-full text-xl font-bold bg-[#1CB0F6] shadow-lg p-4"
       >
-        <FerrisWheel className="w-full h-full"/>
+        <FerrisWheelIcon className="w-full h-full text-white"/>
       </motion.div>
 
       {/* Spin Button */}
@@ -44,13 +44,12 @@ function SpinWheel() {
         onClick={spinWheel}
         className="px-4 py-2"
       >
-        🎰 Spin the Wheel
+        🎰 Spin
       </Button>
 
       {/* Result */}
       {selectedChallenge && (
         <div className="text-center">
-          <h2 className="text-lg font-bold">Your Challenge:</h2>
           <p className="text-xl">{selectedChallenge}</p>
         </div>
       )}

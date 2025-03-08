@@ -1,7 +1,5 @@
 "use client";
-import { BoltIcon, LockIcon, AlarmClock, Star } from "lucide-react";
 import React, { useEffect, useState } from "react";
-import Timer from "@/app/timer";
 import {
   Table,
   TableHeader,
@@ -87,7 +85,6 @@ function Challenges() {
 
   return (
     <div className="w-full">
-      {/* Column 1 - Daily Challenges */}
       <div className="flex flex-col gap-6 w-full">
         {/* Leaderboard Section */}
         <div className="mt-6">
