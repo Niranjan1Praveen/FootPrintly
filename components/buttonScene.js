@@ -99,12 +99,9 @@ export default function ButtonScene() {
       color: "#FFD699",
     }, // Light Orange
   ];
-  const determineFOV = () => {
-    return window.innerWidth > 768 ? 45 : 90; 
-  };
   return (
     <div className="w-screen h-screen">
-      <Canvas camera={{ position: [0, 25, 30], fov: determineFOV() }} className="absolute inset-0">
+      <Canvas camera={{ position: [0, 25, 30], fov: 45 }} className="absolute inset-0">
         <ambientLight intensity={0.4} />
         <directionalLight position={[5, 5, 5]} intensity={1} />
         <Suspense fallback={null}>
