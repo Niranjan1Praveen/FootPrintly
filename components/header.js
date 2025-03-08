@@ -15,7 +15,7 @@ export default function Header() {
       {/* Logo */}
       <div className="flex items-center gap-4">
         <Image src={logo} alt="Logo" width={30} height={30} />
-        <h1 className="text-xl font-bold tracking-widest cursor-pointer text-[var(--secondary-text)]">
+        <h1 className="text-xl font-bold tracking-widest cursor-pointer">
           FootPrintly
         </h1>
       </div>

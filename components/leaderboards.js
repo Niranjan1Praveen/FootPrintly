@@ -1,17 +1,19 @@
-import React from "react";
-import { Trophy, Star } from "lucide-react";
+"use client";
+import { BoltIcon, LockIcon, AlarmClock, Star } from "lucide-react";
+import React, { useEffect, useState } from "react";
+import Timer from "@/app/timer";
 import {
   Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableHead,
   TableHeader,
   TableRow,
+  TableHead,
+  TableBody,
+  TableCell,
 } from "@/components/ui/table";
 
-function Leaderboards() {
-  const leaderboardData = [
+function Challenges() {
+  const [currentUser, setCurrentUser] = useState("");
+  const [leaderboard, setLeaderboard] = useState([
     { position: 1, name: "Alice", trophies: 320, league: "Eco Warrior" },
     {
       position: 2,
@@ -25,60 +27,100 @@ function Leaderboards() {
       trophies: 275,
       league: "Sustainability Advocate",
     },
-  ];
+  ]);
+
+  const determineLeague = (score) => {
+    if (score >= 300) return "Eco Warrior";
+    if (score >= 250) return "Sustainability Advocate";
+    return "Green Enthusiast";
+  };
+
+  useEffect(() => {
+    const fetchUserScore = async () => {
+      const authToken = localStorage.getItem("authToken");
+      if (!authToken) return;
+
+      try {
+        const response = await fetch(
+          `http://localhost:3001/api/user/${authToken}`
+        );
+        const data = await response.json();
+
+        if (response.ok) {
+          const userScore = data.totalScore ?? 0;
+          setCurrentUser(data.username);
+          setLeaderboard((prevLeaderboard) => {
+            if (prevLeaderboard.some((user) => user.name === data.username)) {
+              return prevLeaderboard.map((user) =>
+                user.name === data.username
+                  ? { ...user, trophies: userScore }
+                  : user
+              );
+            }
+
+            const updatedLeaderboard = [
+              ...prevLeaderboard,
+              {
+                name: data.username,
+                trophies: userScore,
+                league: determineLeague(userScore),
+              },
+            ];
+
+            updatedLeaderboard.sort((a, b) => b.trophies - a.trophies);
+            updatedLeaderboard.forEach(
+              (user, index) => (user.position = index + 1)
+            );
+
+            return updatedLeaderboard;
+          });
+        } else {
+          console.error("Error fetching score:", data.error);
+        }
+      } catch (error) {
+        console.error("Error fetching score:", error);
+      }
+    };
+
+    fetchUserScore();
+  }, []);
 
   return (
-    <main className="flex flex-col">
-      <h1 className="font-bold text-lg">Leaderboards</h1>
-      {/* Leaderboard List */}
-      {/* <div className="flex flex-col py-5 gap-6 w-full">
-        {leaderboardData.map((user, index) => (
-          <div
-            key={user.position}
-            className="flex items-center gap-5 w-full p-4 transform transition-all duration-300 bg-[var(--secondary-background)] rounded-[5px] "
-          >
-            <div
-              className={`w-12 h-12 rounded-full flex items-center justify-center border-4 border-white shadow-lg`}
-            >
-              <span className="text-lg font-bold">#{user.position}</span>
-            </div>
-            <div className="flex flex-col">
-              <p className="font-bold">{user.name}</p>
-              <p className="text-sm">
-                <Trophy className="inline-block w-4 h-4 text-yellow-400 mr-1" />{" "}
-                Trophies: {user.trophies} – League: {user.league}
-              </p>
-            </div>
-            {index === 0 && (
-              <Star className="w-6 h-6 text-yellow-400 animate-ping" />
-            )}
-          </div>
-        ))}
-      </div> */}
-      <div className="py-5 w-full">
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead className="w-[100px]">Username</TableHead>
-              <TableHead>Position</TableHead>
-              <TableHead>Trophies</TableHead>
-              <TableHead className="text-right">Tier</TableHead>
-            </TableRow>
-          </TableHeader>
-          {leaderboardData.map((user, index) => (
-            <TableBody key={index}>
+    <div className="w-full">
+      {/* Column 1 - Daily Challenges */}
+      <div className="flex flex-col gap-6 w-full">
+        {/* Leaderboard Section */}
+        <div className="mt-6">
+          <h2 className="text-lg font-bold mb-4">Leaderboard</h2>
+          <Table>
+            <TableHeader>
               <TableRow>
-                <TableCell className="font-medium">{user.name}</TableCell>
-                <TableCell>{user.position}</TableCell>
-                <TableCell>{user.trophies}</TableCell>
-                <TableCell className="text-right">{user.league}</TableCell>
+                <TableHead className="w-16">#</TableHead>
+                <TableHead>Name</TableHead>
+                <TableHead>Points</TableHead>
+                <TableHead>League</TableHead>
               </TableRow>
+            </TableHeader>
+            <TableBody>
+              {leaderboard.map((user, index) => (
+                <TableRow
+                  key={index}
+                  className={
+                    user.name === currentUser ? "bg-blue-200 font-semibold" : ""
+                  }
+                >
+                  <TableCell>{user.position}</TableCell>
+                  <TableCell>{user.name}</TableCell>
+                  <TableCell>{user.trophies}</TableCell>
+                  <TableCell>{user.league}</TableCell>
+                </TableRow>
+              ))}
             </TableBody>
-          ))}
-        </Table>
+          </Table>
+        </div>
       </div>
-    </main>
+    </div>
   );
 }
 
-export default Leaderboards;
+export default Challenges;

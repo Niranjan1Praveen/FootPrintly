@@ -6,7 +6,6 @@ import QuestionAnswerIcon from "@mui/icons-material/QuestionAnswer";
 import LiveHelpIcon from "@mui/icons-material/LiveHelp";
 import Person4Icon from "@mui/icons-material/Person4";
 import GradeIcon from "@mui/icons-material/Grade";
-
 import Rewards from "./rewards";
 import { ChatBubbleTwoTone, PhotoAlbum } from "@mui/icons-material";
 import { Laptop2Icon } from "lucide-react";
@@ -42,7 +41,7 @@ export default function Navbar() {
         >
           <Link href={"/"}>
             <Avatar>
-              <AvatarImage src="https://github.com/shadcn.png" />
+              <AvatarImage src="/logo/logo.png" />
               <AvatarFallback>CN</AvatarFallback>
             </Avatar>
           </Link>
