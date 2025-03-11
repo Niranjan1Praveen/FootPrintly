@@ -38,9 +38,9 @@ function Highlight(props) {
   };
   return (
     <div className="flex flex-col gap-5">
-      <p className="flex items-center gap-1">
+      <h1 className="flex items-center gap-1 font-bold text-lg">
         Post your Highlight of the Day <SmileIcon />
-      </p>
+      </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
         <input
           type="file"

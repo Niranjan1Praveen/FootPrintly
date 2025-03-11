@@ -4,13 +4,13 @@ import { Button } from "./ui/button";
 import { FerrisWheelIcon } from "lucide-react";
 
 const challenges = [
-  "♻️ Recycle 5 plastic bottles",
-  "🚶 Walk instead of using a vehicle",
-  "🌱 Plant a tree today",
-  "🍃 Go a day without plastic",
-  "🔌 Turn off unused electronics",
-  "🥦 Eat a plant-based meal",
-  "🏞️ Spend 30 mins in nature",
+  "♻️ Recycle 5 plastic bottles (+10 pts)",
+  "🚶 Walk instead of using a vehicle (+10 pts)",
+  "🌱 Plant a tree today (+10 pts)",
+  "🍃 Go a day without plastic (+10 pts)",
+  "🔌 Turn off unused electronics (+10 pts)",
+  "🥦 Eat a plant-based meal (+10 pts)",
+  "🏞️ Spend 30 mins in nature (+10 pts)",
 ];
 
 function SpinWheel() {

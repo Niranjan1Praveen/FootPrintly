@@ -6,23 +6,28 @@ import { CloseOutlined } from "@mui/icons-material";
 import EmptyList from "@/components/emptylist";
 import Link from "next/link";
 import axios from "axios";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation"; 
 
-export default function Page({ params }) {
+export default function Page() {
   const router = useRouter();
-
   const [questions, setQuestions] = useState([]);
   const [index, setIndex] = useState(0);
   const [selected, setSelected] = useState(null);
   const [totalScore, setTotalScore] = useState(0);
   const [previousScore, setPreviousScore] = useState(0);
 
+  const { theme } = useParams();
+  
   useEffect(() => {
-    fetch("http://localhost:3001/api/questions")
+    if (!theme) return;
+
+    const decodedTheme = decodeURIComponent(theme);
+    fetch(`http://localhost:3001/api/questions/${decodedTheme}`)
       .then((res) => res.json())
       .then((data) => setQuestions(data))
       .catch((err) => console.error("Error fetching questions:", err));
-  }, []);
+  }, [theme]);
+  
 
   if (questions.length === 0) {
     return <EmptyList />;
@@ -30,9 +35,7 @@ export default function Page({ params }) {
 
   const data = questions[index] || {};
 
-  const handleSelect = (optionIndex) => {
-    setSelected(optionIndex);
-  };
+  const handleSelect = (optionIndex) => setSelected(optionIndex);
 
   const handleNext = async () => {
     if (selected !== null && index < questions.length) {

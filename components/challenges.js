@@ -34,9 +34,10 @@ function Challenges(props) {
           `http://localhost:3001/api/user/${authToken}`
         );
         const data = await response.json();
-
+        console.log(data);
+        
         if (response.ok) {
-          setPoints(data.totalScore ?? 0);
+          setPoints(data.userScore ?? 0);
           setCompletedChallenges(data.completedChallenges ?? []);
         } else {
           console.error("Error fetching score:", data.error);
@@ -74,7 +75,6 @@ function Challenges(props) {
       console.error("Error updating score:", error);
     }
   };
-
   return (
     <div className="flex flex-col gap-4">
       {/* Header Section */}

@@ -8,19 +8,23 @@ import { Flame, ArrowBigRight } from "lucide-react";
 import Highlight from "@/components/highlight";
 import Leaderboards from "@/components/leaderboards";
 import { useState, useEffect } from "react";
+import { ScratchCard } from "next-scratchcard";
+import ScratchCoupon from "@/components/scratchCoupon";
 
 const Page = () => {
   const [userName, setUserName] = useState("");
 
   useEffect(() => {
     const fetchUserName = async () => {
-      const authToken = localStorage.getItem("authToken");      
+      const authToken = localStorage.getItem("authToken");
       if (!authToken) return;
       try {
-        const response = await fetch(`http://localhost:3001/api/user/${authToken}`);
+        const response = await fetch(
+          `http://localhost:3001/api/user/${authToken}`
+        );
         const data = await response.json();
         if (response.ok) {
-          setUserName(data.username);          
+          setUserName(data.username);
         } else {
           console.error("Error fetching username:", data.error);
         }
@@ -30,7 +34,7 @@ const Page = () => {
     };
     fetchUserName();
   }, []);
-  
+
   return (
     <div className="grid gap-12 section-p">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 w-full">
@@ -87,11 +91,13 @@ const Page = () => {
           </div>
           {/* Leaderboards */}
           <Leaderboards />
+
+          {/* ScratchCoupon */}
+          <ScratchCoupon />
+          {/* Highlight Section */}
+          <Highlight />
         </div>
       </div>
-
-      {/* Highlight Section */}
-      <Highlight />
     </div>
   );
 };

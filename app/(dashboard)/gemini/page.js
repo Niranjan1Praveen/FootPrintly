@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from "react";
 import {
   Droplet,
-  FileQuestionIcon,
   Footprints,
   Leaf,
   Mic,
@@ -22,10 +21,10 @@ function Page() {
   const [loading, setLoading] = useState(false);
   const [typing, setTyping] = useState(false);
   const [isResLoaded, setIsResLoaded] = useState(false);
-  const [totalScore, setTotalScore] = useState(null);
+  const [totalScore, setTotalScore] = useState(0);
   const questionTemplates = [
     {
-      tempQS: `Based on my sustainability score of ${totalScore}, suggest three eco-friendly challenges suitable.`,
+      tempQS: `Based on my sustainability score of ${totalScore}, suggest three eco-friendly challenges.`,
       icon: <Footprints className="absolute bottom-2 right-2" />,
       star: true,
     },
@@ -55,7 +54,7 @@ function Page() {
         const data = await response.json();
 
         if (response.ok) {
-          setTotalScore(data.totalScore);
+          setTotalScore(data.userScore);
         } else {
           console.error("Error fetching score:", data.error);
         }

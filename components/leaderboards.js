@@ -45,7 +45,7 @@ function Challenges() {
         const data = await response.json();
 
         if (response.ok) {
-          const userScore = data.totalScore ?? 0;
+          const userScore = data.userScore ?? 0;
           setCurrentUser(data.username);
           setLeaderboard((prevLeaderboard) => {
             if (prevLeaderboard.some((user) => user.name === data.username)) {

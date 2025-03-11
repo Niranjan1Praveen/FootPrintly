@@ -27,7 +27,6 @@ function Rewards(props) {
                 Check the benefits you’ve unlocked based on your sustainability
                 level.
               </DrawerDescription>
-
             </DrawerHeader>
             <DrawerFooter>
               <DrawerClose asChild>
